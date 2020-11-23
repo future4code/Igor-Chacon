@@ -170,3 +170,16 @@ table img  {
     text-align: left;
 }
 
+.butaoPesquisa {
+    border: 0;
+    background: transparent;
+}
+
+.butaoPesquisa:hover {
+    /* color: #aca9a9; */
+    filter:opacity(50%);
+}
+
+.butaoPesquisa:target {
+    filter:opacity(0%);
+}

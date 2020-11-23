@@ -150,3 +150,8 @@ table img  {
     width: 100px;
     height: 100px;
 }
+
+.textBordaStyle {
+    border: hidden;
+    border-bottom: solid;
+}

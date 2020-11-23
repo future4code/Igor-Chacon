@@ -56,7 +56,11 @@ div img {
 }
 
 .icone {
-    height: 15px;
+    height: 25px;
+    width: 50px;
+    vertical-align: middle;
+    border-radius: 8px;
+    border-style: solid;
 }
 
 
@@ -135,6 +139,6 @@ td button {
 }
 
 table img  {
-    max-width: 100px;
-    min-width: 100px;
+    width: 100px;
+    height: 100px;
 }

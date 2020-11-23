@@ -7,7 +7,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
 }
 
 h2 {
@@ -156,4 +156,10 @@ table img  {
 .textBordaStyle {
     border: hidden;
     border-bottom: solid;
+}
+
+.listaHome {
+    list-style-type: decimal;
+    display: inline-block;
+    text-align: left;
 }

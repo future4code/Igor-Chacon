@@ -133,3 +133,8 @@ td button {
 .formatacaoTabela {
     text-align: center;
 }
+
+table img  {
+    max-width: 100px;
+    min-width: 100px;
+}

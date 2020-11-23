@@ -24,6 +24,7 @@ input {
 
 button:focus {
     color: white;
+    outline: none;
 }
 
 img {
@@ -151,6 +152,7 @@ td button:target {
 table img  {
     width: 100px;
     height: 100px;
+    background-color: white;
 }
 
 .textBordaStyle {
@@ -158,8 +160,13 @@ table img  {
     border-bottom: solid;
 }
 
+.textBordaStyle:focus {
+    outline: none;
+}
+
 .listaHome {
     list-style-type: decimal;
     display: inline-block;
     text-align: left;
 }
+

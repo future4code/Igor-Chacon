@@ -144,7 +144,8 @@ td button:target {
 }
 
 .formatacaoTabela {
-    text-align: center;
+    text-align: center; 
+    margin: auto;   
 }
 
 table img  {

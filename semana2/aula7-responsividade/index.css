@@ -1,0 +1,129 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#first-block {
+    border: 1px solid black;
+    height: 80px;
+    background-color: red;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "blue-block yellow-block green-block"
+    "blue-block yellow-block green-block";
+    padding: 10px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    text-align: center;
+  }
+
+.blue-block {
+    border: 1px solid black;
+    padding: 25px;
+    background-color: blue;
+}
+
+.yellow-block {
+    border: 1px solid black;
+    padding: 25px;
+    background-color: yellow;
+}
+
+.green-block {
+    border: 1px solid black;
+    padding: 25px;
+    background-color: green;
+}
+
+.conteinerBlacks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    text-align: center;
+    padding: 10px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.black-block {
+    border: 1px solid black;
+    padding: 80px;
+    background-color: black;
+    color: white;
+}
+
+.conteinerWhites {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    text-align: center;
+    padding: 10px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.white-block {
+    border: 1px solid black;
+    padding: 25px;
+    background-color: white;
+}
+
+@media only screen and (max-width: 800px) {
+    body {
+        background-color: red;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+        "blue-block yellow-block"
+        "green-block green-block"
+        "blue-block yellow-block"
+        "green-block green-block";
+        padding: 10px;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        text-align: center;
+      }
+
+      .conteinerBlacks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        text-align: center;
+        padding: 10px;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .conteinerWhites {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        text-align: center;
+        padding: 10px;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+        background-color: pink;
+    }
+}

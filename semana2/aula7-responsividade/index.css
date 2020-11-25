@@ -17,9 +17,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-    "blue-block yellow-block green-block"
-    "blue-block yellow-block green-block";
     padding: 10px;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
@@ -79,51 +76,48 @@ body {
     background-color: white;
 }
 
-@media only screen and (max-width: 800px) {
-    body {
-        background-color: red;
-    }
+@media only screen and (max-width: 700px) {
 
     .container {
-        display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
-        grid-template-areas: 
-        "blue-block yellow-block"
-        "green-block green-block"
-        "blue-block yellow-block"
-        "green-block green-block";
-        padding: 10px;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-        text-align: center;
       }
 
-      .conteinerBlacks {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-        text-align: center;
-        padding: 10px;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-    }
+      .green-block {
+          grid-column: span 2;
+      }
 
     .conteinerWhites {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-        text-align: center;
-        padding: 10px;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .white-11 {
+        grid-column: span 2;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    body {
-        background-color: pink;
+
+    #first-block {
+        padding: 50px;
+    }
+    .white-block {
+        padding: 70px;
+        grid-column: span 2;
+    }
+    .blue-block {
+        padding: 70px;
+        grid-column: span 2;
+    }
+    .green-block {
+        padding: 70px;
+    }
+    .yellow-block {
+        padding: 70px;
+        grid-column: span 2;
+    }
+    .black-block {
+        grid-column: span 2;
     }
 }

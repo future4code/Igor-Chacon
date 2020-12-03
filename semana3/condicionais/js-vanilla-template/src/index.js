@@ -79,7 +79,7 @@ de dentro do contexto do if.
 // }
 // console.log(mensagemBoasVindas)
 
-/* Exercício 6 */
+/* Exercício 7 */
 
 // let generoFilme = prompt("Digite o gênero do filme.")
 // let precoIngreco = Number(prompt("Digite o preço do ingreço."))
@@ -92,3 +92,103 @@ de dentro do contexto do if.
 
 /* Desafios */
 
+/* Desafio 1 */
+
+// let generoFilme = prompt("Digite o gênero do filme.")
+// let precoIngreco = Number(prompt("Digite o preço do ingreço."))
+// let SNACK = prompt("qual o lanche que você vai comprar?")
+
+// if (generoFilme === "fantasia" && precoIngreco < 15) {
+//     console.log("Bom filme!")
+//     console.log("... com " + SNACK)
+// } else {
+//     console.log("Escolha outro filme :(")
+// }
+
+
+/* Desafio 2 */
+
+let nomeCliente = prompt("Digite o nome do cliente.")
+let tipoJogo = prompt("Digite o tipo de jogo (IN indica internacional; e DO indica doméstico;)")
+let etapaJogo = prompt("Digite a etapa do jogo (SF indica semi-final; DT indica decisão de terceiro lugar; e FI indica final)")
+let categoria = prompt("Escolha categoria (1, 2, 3 ou 4)")
+let quantidadeIngressos = prompt("Digite quantidade de ingressos.")
+let precoDolar = 4.1
+
+switch (etapaJogo) {
+    case "SF":
+        if (categoria == 1) {
+            precoIngreco = 1320
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 2) {
+            precoIngreco = 880
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 3) {
+            precoIngreco = 550
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 4) {
+            precoIngreco = 220
+            precoTotal = quantidadeIngressos * precoIngreco
+        }
+        break;
+    case "DT":
+        if (categoria == 1) {
+            precoIngreco = 660
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 2) {
+            precoIngreco = 440
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 3) {
+            precoIngreco = 330
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 4) {
+            precoIngreco = 170
+            precoTotal = quantidadeIngressos * precoIngreco
+        }
+    case "FI":
+        if (categoria == 1) {
+            precoIngreco = 1980
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 2) {
+            precoIngreco = 1320
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 3) {
+            precoIngreco = 880
+            precoTotal = quantidadeIngressos * precoIngreco
+        } else if (categoria == 4) {
+            precoIngreco = 330
+            precoTotal = quantidadeIngressos * precoIngreco
+        }
+        break;
+    default:
+        console.log("Algo deu errado. Comece novamente.")
+        break;
+}
+
+console.log("---Dados da compra--- ")
+console.log("Nome do cliente: " + nomeCliente)
+if (tipoJogo == "DO") {
+    console.log("Tipo de jogo: Nacional")
+} else {
+    console.log("Tipo de jogo: Internacional")
+}
+if (etapaJogo == "SF") {
+    console.log("Etapa do jogo: Semifinal")
+} else if (etapaJogo == "DT") {
+    console.log("Etapa do jogo: Decisão de 3º lugar")
+} else if (etapaJogo == "FI") {
+    console.log("Etapa do jogo: Final")
+}
+console.log("Categoria: " + categoria)
+console.log("Quantidade de ingressos: " + quantidadeIngressos + " ingressos")
+console.log("---Valores--- ")
+
+if (tipoJogo == "DO") {
+    console.log("Valor do ingresso: R$" + precoIngreco)
+    console.log("Valor total: R$" + precoTotal)
+} else if (tipoJogo == "IN") {
+    console.log("Valor do ingresso: U$" + precoIngreco/precoDolar)
+    console.log("Valor total: U$" + precoTotal/precoDolar)
+} else {
+    console.log("Algo deu errado. Tente novamente.")
+}

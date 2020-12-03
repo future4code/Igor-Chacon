@@ -32,11 +32,10 @@ b. o mais fácil seria usar for... in, no lugar de for... of
 
 // 3.
 const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
-a.
+// // // a.
 for (valor of array) {
     console.log(valor)
 }
-
 
 // // // b.
 for (valor of array) {
@@ -56,13 +55,13 @@ for (valor of arrayNovo) {
 }
 
 
-// // d. 
+// // // d. 
 for (i = 0; i < array.length; i++) {
     console.log("O elemento do índex " + i + " é: " + array[i])
 }
 
 
-// e.
+// // e.
 let maiorNumero = 0
 let menorNumero = array[0]
 for (valor of array) {
@@ -73,6 +72,47 @@ for (valor of array) {
         menorNumero = valor
     }
 }
-console.log(maiorNumero)
-console.log(menorNumero)
+console.log("O maior número é " + maiorNumero +  " e o menor é " + menorNumero)
+
+
+/* Desafios */
+/* DESAFIO 1 */
+/*
+O código imprime linhas com 0, um 0 para a primeira linha, dois para a segunda e assim por diante.
+se o usuário digitar 4, a respota será:
+0
+00
+000
+0000
+*/
+
+/* DESAFIO 2 */
+alert("Vamos jogar!")
+let numeroAlvo = Number(prompt("Escolha o número!"))
+alert("Agora o outro jogador tenta advinhar! Boa sorte")
+let numeroChutado
+
+while (numeroChutado !== numeroAlvo) {
+    numeroChutado = Number(prompt("Chute um número"))
+    if (numeroChutado > numeroAlvo) {
+        
+        console.log("O número chutado foi: " + numeroChutado)
+        console.log("O número chutado é maior que o número alvo.")
+        console.log("DIMINUA DIMINUA DIMINUA")
+        
+    } else if (numeroChutado < numeroAlvo) {
+        
+        console.log("O número chutado foi: " + numeroChutado)
+        console.log("O número chutado é menor que o número alvo.")
+        console.log("AUMENTE AUMENTE AUMENTE")
+        
+    }
+
+}
+
+console.log("Você acertou! O número era: " + numeroAlvo)
+
+
+
+
 

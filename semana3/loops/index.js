@@ -33,18 +33,21 @@ b. o mais fácil seria usar for... in, no lugar de for... of
 // 3.
 const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
 // // // a.
+console.log("3. a. ")
 for (valor of array) {
     console.log(valor)
 }
 
 // // // b.
+console.log("3. b. ")
 for (valor of array) {
     console.log(valor/10)
 }
 
 
 // // // c.
-// let arrayNovo = []
+console.log("3. c. ")
+let arrayNovo = []
 for (valor of array) {
     if (valor%2 === 0) {
         arrayNovo.push(valor)
@@ -56,12 +59,14 @@ for (valor of arrayNovo) {
 
 
 // // // d. 
+console.log("3. d. ")
 for (i = 0; i < array.length; i++) {
     console.log("O elemento do índex " + i + " é: " + array[i])
 }
 
 
 // // e.
+console.log("3. e. ")
 let maiorNumero = 0
 let menorNumero = array[0]
 for (valor of array) {
@@ -87,6 +92,7 @@ se o usuário digitar 4, a respota será:
 */
 
 /* DESAFIO 2 */
+console.log("Desafio 2 ")
 alert("Vamos jogar!")
 let numeroAlvo = Number(prompt("Escolha o número!"))
 alert("Agora o outro jogador tenta advinhar! Boa sorte")

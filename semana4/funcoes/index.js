@@ -32,53 +32,53 @@ No final, a função retorna o arrayFinal que foi criado.
 
 // EXERCÍCIO 4
 // a.
-// function sobreMim() {
-//     console.log("Eu sou Igor, tenho 31 anos, moro em Natal e sou psicólogo e professor.")
-// }
-// sobreMim()
+function sobreMim() {
+    console.log("Eu sou Igor, tenho 31 anos, moro em Natal e sou psicólogo e professor.")
+}
+sobreMim()
 
 // b.
-// function sobreMim2(nome, idade, cidade, estudante) {
-//     if (estudante) {
-//         console.log("Eu sou " + nome + ", tenho " + idade + " anos, moro em " + cidade + " e sou estudante.")
-//     } else {
-//         console.log("Eu sou " + nome + ", tenho " + idade + " anos, moro em " + cidade + " e não sou estudante.")
-//     }
-// }
+function sobreMim2(nome, idade, cidade, estudante) {
+    if (estudante) {
+        console.log("Eu sou " + nome + ", tenho " + idade + " anos, moro em " + cidade + " e sou estudante.")
+    } else {
+        console.log("Eu sou " + nome + ", tenho " + idade + " anos, moro em " + cidade + " e não sou estudante.")
+    }
+}
 
-// sobreMim2("nome", 31, "cidade", false)
+sobreMim2("nome", 31, "cidade", false)
 
 /* EXERCÍCIO 5 */
 // a.
-// let soma = function (x, y) {
-//     s = x + y
-//     return s
-// }
-// console.log(soma(10, 20))
+let soma = function (x, y) {
+    s = x + y
+    return s
+}
+console.log(soma(10, 20))
 
 // b.
-// let verificacao = function (num1, num2) {
-//     if (num1 > num2) {
-//         return true
-//     } else if (num2 > num1) {
-//         return false
-//     } else if (num1 === num2) {
-//         return false
-//     }
-// }
-// console.log(verificacao(40, 30))
+let verificacao = function (num1, num2) {
+    if (num1 > num2) {
+        return true
+    } else if (num2 > num1) {
+        return false
+    } else if (num1 === num2) {
+        return false
+    }
+}
+console.log(verificacao(40, 30))
 
 // c.
-// let repeticao = function (frase) {
-//     for (i = 0; i < 10; i++) {
-//         console.log(frase)
-//     }
-// }
-// repeticao("olá, mundo")
+let repeticao = function (frase) {
+    for (i = 0; i < 10; i++) {
+        console.log(frase)
+    }
+}
+repeticao("olá, mundo")
 
-// EXERCÍCIO 6 //
+// // EXERCÍCIO 6 //
 
-// a.
+// // a.
 const array = [10, 23, 45, 78, 90, 52, 35, 67, 84, 22]
 
 function contaArray(array) {
@@ -86,7 +86,7 @@ function contaArray(array) {
 }
 contaArray(array)
 
-// b.
+// // b.
 let parOuImpar = function (numero) {
     if (numero %2 === 0) {
         return true
@@ -96,7 +96,7 @@ let parOuImpar = function (numero) {
 }
 console.log(parOuImpar(7))
 
-// c.
+// // c.
 let quantosPares = (a) => {
     let cont = 0
     for (let x of a) {
@@ -111,8 +111,8 @@ let quantosPares = (a) => {
 
 console.log(quantosPares(array))
 
-// d.
-let parOuImpar = function (numero) {
+// // d.
+let parOuImpar2 = function (numero) {
     if (numero %2 === 0) {
         return true
     } else {
@@ -122,7 +122,7 @@ let parOuImpar = function (numero) {
 let quantosParesD = (a) => {
     let cont = 0
     for (let x of a) {
-        if (parOuImpar(x)) {
+        if (parOuImpar2(x)) {
             cont++
         } else {
             cont = cont
@@ -131,3 +131,70 @@ let quantosParesD = (a) => {
     return cont
 }
 console.log(quantosParesD(array))
+
+
+// DESAFIOS
+// EXERCÍCIO 1
+// 1.
+let receberImprimir = (parametro) => {
+    console.log(parametro)
+}
+receberImprimir("olá, mundo!")
+
+// 2.
+let receberSemParametro = (parametro1, parametro2) => {
+    soma = parametro1 + parametro2
+    receberImprimir(soma)
+}
+receberSemParametro(1, 1)
+
+// EXERCÍCIO 2
+const numeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
+// a.
+let exercicio2A = (arrayRecebido) => {
+    let arrayFinal = [];
+
+    for (let valores of arrayRecebido) {
+          if (valores % 2 === 0) {
+          arrayFinal.push(valores * valores)
+          }
+    }
+
+    return arrayFinal
+}
+
+receberImprimir(exercicio2A(numeros))
+
+// b.
+let maiorNumero = (arrayParametro) => {
+    numero = 0
+    cont = -1
+    for (i = 0; i< arrayParametro.length; i++) {
+            if (arrayParametro[i] >= numero) {
+                numero = arrayParametro[i]
+                cont = i
+            }
+        }
+
+    return numero
+}
+receberImprimir(maiorNumero(numeros))
+
+// c.
+let indiceDoMaior = (arrayParametro) => {
+    numero = maiorNumero(arrayParametro)
+    return cont
+}
+
+console.log(indiceDoMaior(numeros))
+
+let inverterArray = (arrayParametro) => {
+    let arrayInvertido = []
+
+    for (let i = arrayParametro.length-1; i>=0; i--) {
+        arrayInvertido.push(arrayParametro[i])
+    }
+    return arrayInvertido
+}
+
+console.log(inverterArray(numeros))

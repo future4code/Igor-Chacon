@@ -10,6 +10,7 @@ document.getElementById("button").onclick = function AddTarefa() {
         let h = new Date()
         numeroID = h.getTime()  //numero identificador da tarefa em seu id para manipulá-la.
         listaTarefaDoDia.innerHTML += `<div><li id=\"${numeroID}\" onclick=\"riscar(${numeroID})\" class=\"deletavel\">${valorHora.bold()} - ${valorTarefa}</li></div>`
+
     }
     document.getElementById("tarefa").value = ""
 }

@@ -41,6 +41,7 @@ input, select, button {
 
 .riscar {
     text-decoration: line-through;
+    color: green;
 }
 
 @media only screen and (max-width: 600px) {

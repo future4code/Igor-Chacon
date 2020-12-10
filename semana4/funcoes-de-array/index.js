@@ -10,7 +10,9 @@ function imprimirDespesas(despesas){
     
     // AQUI VEM A IMPLEMENTAÇÃO
     const callback = (despesa, index, array) => {
-        divDespesas.innerHTML += `Valor: ${despesa.valor} | Tipo: ${despesa.tipo} | Descrição: ${despesa.descricao}`
+        divDespesas.innerHTML += `Valor: ${despesa.valor} 
+                                | Tipo: ${despesa.tipo} 
+                                | Descrição: ${despesa.descricao} <br>`
     }
     despesas.forEach(callback)
 }
@@ -26,6 +28,19 @@ function imprimirExtrato(){
 
 
     // AQUI VEM A IMPLEMENTAÇÃO
+    const callback = (despesa, index, array) => {
+        if (despesa.tipo == "alimentação") {
+            gastoAlimentacao += despesa.valor
+        }
+        if (despesa.tipo == "utilidades") {
+            gastoUtilidades += despesa.valor
+        }
+        if (despesa.tipo == "viagem") {
+            gastoViagem += despesa.valor
+        }
+    }
+    arrDespesas.forEach(callback)
+    gastoTotal += gastoAlimentacao + gastoUtilidades + gastoViagem
 
     divExtrato.innerHTML = `<p>Extrato: Gasto Total: R$${gastoTotal} | Alimentação: R$${gastoAlimentacao} | 
                                         Utilidades: R$${gastoUtilidades} | Viagem: R$${gastoViagem}</p>`
@@ -77,6 +92,12 @@ function filtrarDespesas(){
 
 
     let despesasFiltradas // AQUI NESSA VARIÁVEL VEM A IMPLEMENTAÇÃO
+    const callback = (despesa, index, array) => {
+        if (tipoFiltro == "")
+    }
+
+    const despesasFiltradas = despesasFiltradas.map(callback)
+
 
     imprimirDespesas(despesasFiltradas)
 }

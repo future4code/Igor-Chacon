@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to bottom right, #C4ACEC, #432D69);
+    color: #574C69;
+}
+
+label {
+    font-weight: bold;
+}
+
+
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    justify-content: space-evenly;
+    height: 90vh;
+}
+
+.semana {
+    border: 1px dotted rgb(53, 53, 53);
+    width: 14%;
+    padding: 5px;
+}
+
+input, select, button {
+    background-image: linear-gradient(to bottom right, #c4acec17, #432D69);
+    margin: 0 5px;
+    padding: 5px;
+}
+
+.riscar {
+    text-decoration: line-through;
+    color: green;
+}
+
+@media only screen and (max-width: 600px) {
+    section {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100vh;
+    }
+    header {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: stretch;
+        margin: 20%;
+    }
+    input, select {
+        width: 100%;
+        margin: 5px auto;
+    }
+    button {
+        margin: 5px auto;
+    }
+    section > .semana {
+        text-align: left;
+        width: auto;
+        padding: 0 0 10% 0;
+    }
+}

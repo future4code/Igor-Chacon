@@ -34,3 +34,65 @@ Em um for, guarda na variavel numero1 o menor valor do array numeros
 e o maior valor do array numeros na variável numero2
 por fim, imprime numero1 e numero2
 */
+
+
+// Exercícios de Lógica de Programação
+// 1.
+/*
+Podemos iterar uma lista (array, obj, etc), usando um filter, map ou forEach
+*/
+let arr = [1, 2, 3, 4, 5]
+
+let pessoas = [
+    pessoa1 = {
+        nome: "joao",
+        idade: 16,
+        peso: 60,
+    },
+    pessoa2 = {
+        nome: "Maria",
+        idade: 17,
+        peso: 50,
+    },
+    pessoa3 = {
+        nome: "Vitor",
+        idade: 50,
+        peso: 70,
+    }
+]
+const callbackForEach = (parametro, index, array) => {
+    console.log(parametro)
+}
+// arr.forEach(callbackForEach)
+
+const callbackMap = (parametro, index, array) => {
+    return parametro.nome
+}
+arrNomes = pessoas.map(callbackMap)
+// console.log(arrNomes)
+
+const callbackFilter = (parametro, index, array) => {
+    return parametro.idade < 18
+}
+
+let arrMenores = pessoas.filter(callbackFilter)
+// console.log(arrMenores)
+
+// // 2
+// const booleano1 = true
+// const booleano2 = false
+// const booleano3 = !booleano2 // booleano3 == true
+// const booleano4 = !booleano3 // booleano4 == false
+/*
+a) booleano1 && booleano2 && !booleano4
+false
+b) (booleano1 && booleano2) || !booleano3
+false
+c) (booleano2 || booleano3) && (booleano4 || booleano1)
+true
+d) !(booleano2 && booleano3) || !(booleano1 && booleano3)
+true
+e) !(booleano1) && !(booleano3) || (!booleano4 && booleano3 && booleano3)
+true
+*/
+

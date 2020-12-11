@@ -157,18 +157,49 @@ const funcEx5 = (num1, num2) => {
 
 // exercícios de funções
 // 1
-const numeros = [5, 6, 200, 4, 7, 22, 8, 50, 99, 21, 100]
+const numeros = [5, 6, 800, 1, 200, 4, 7, 22, 999, 8, 50, 99, 21, 100]
 let maior = 0
 let sMaior = 0
-const maiorNumero = (arr, indice) => {
+let menor = Infinity
+let sMenor = Infinity
+const segundoMaiorMenor = (array) => {
 
-    if (numeros[indice] > maior) {
-        maior = numeros[indice]
+    // para segundo maior
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > maior) {
+            maior = array[i]
+        }
     }
+
+    array.splice(array.indexOf(maior), 1)
+    novoArray = array
+
+    for (let i = 0; i < novoArray.length; i++) {
+        if (novoArray[i] > sMaior) {
+            sMaior = novoArray[i]
+        }
+    }
+
+    // para segundo menor
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] < menor) {
+            menor = array[i]
+        }
+    }
+
+    array.splice(array.indexOf(menor), 1)
+    novoArrayMenor = array
+
+    for (let i = 0; i < novoArrayMenor.length; i++) {
+        if (novoArrayMenor[i] < sMenor) {
+            sMenor = novoArrayMenor[i]
+        }
+    }
+    console.log("O segundo maior é: "+sMaior)
+    console.log("O segundo menor é: "+sMenor)
 }
-numeros.forEach(maiorNumero)
-// console.log(maior)
-// console.log(sMaior)
+segundoMaiorMenor(numeros)
+
 
 // 2
 const alertando = function () {
@@ -196,4 +227,27 @@ const criaRetangulo = (lado1, lado2) => {
 }
 
 ret = criaRetangulo(90, 3)
-console.log(ret)
+// console.log(ret)
+
+// 3
+filme = {
+    titulo: "Brilho eterno de uma mente sem lembranças",
+    ano: 2004,
+    diretor: "Michel Gondry",
+    atores: ["Jim Carrey", "Kate Winslet", "Kirsten Dunst"]
+}
+
+// console.log(`Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores[0]}, ${filme.atores[1]}, ${filme.atores[2]}`)
+
+// 4
+pessoa = {
+    nome: "Qualquer da Silva", idade: "33", email: "joao@gmail.com", endereco: "rua tal",
+}
+
+const anonimizarPessoa = (objPessoa) => {
+    let NovoObjPessoa = { ... objPessoa}
+    NovoObjPessoa.nome = "ANÔNIMO"
+    return NovoObjPessoa
+}
+novaPessoa = anonimizarPessoa(pessoa)
+// console.log(novaPessoa)

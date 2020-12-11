@@ -153,4 +153,26 @@ const funcEx5 = (num1, num2) => {
     }
 
 }
-funcEx5(5, 10)
+// funcEx5(5, 10)
+
+// exercícios de funções
+// 1
+const numeros = [5, 6, 200, 4, 7, 22, 8, 50, 99, 21, 100]
+let maior = 0
+let sMaior = 0
+const maiorNumero = (arr, indice) => {
+
+    if (numeros[indice] > maior) {
+        maior = numeros[indice]
+    }
+}
+numeros.forEach(maiorNumero)
+// console.log(maior)
+// console.log(sMaior)
+
+// 2
+const alertando = function () {
+    return alert("Hello Labenu!")
+}
+
+const alerta = alertando()

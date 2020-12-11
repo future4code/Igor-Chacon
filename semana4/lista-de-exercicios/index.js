@@ -108,16 +108,49 @@ true
 // }
 
 // 4 
-const verificaTriangulo = (a, b, c) => {
-    if (a == b && a == c && c == b) {
-        return console.log("Triangulo Equilátero")
-    } else if (a != b && a != c && b != c) {
-        return console.log("Triangulo Escaleno")
-    } else if (a == b || a == c || b == c) {
-        return console.log("Triangulo Isósceles")
+// const verificaTriangulo = (a, b, c) => {
+//     if (a == b && a == c && c == b) {
+//         return console.log("Triangulo Equilátero")
+//     } else if (a != b && a != c && b != c) {
+//         return console.log("Triangulo Escaleno")
+//     } else if (a == b || a == c || b == c) {
+//         return console.log("Triangulo Isósceles")
+//     }
+// }
+// const lado1 = prompt("lado1")
+// const lado2 = prompt("lado2")
+// const lado3 = prompt("lado3")
+// verificaTriangulo(lado1, lado2, lado3)
+
+// 5
+const funcEx5 = (num1, num2) => {
+    if (num1 > num2) {
+        console.log("O maior é: " + num1)
+    } else if (num2 > num1) {
+        console.log("O maior é: " + num2)
+    } else if (num1 === num2) {
+        console.log("erro")
     }
+
+    if (num1 % num2 == 0) {
+        console.log(num1 + " é divisível por " + num2)
+    } else {
+        console.log(num1 + " não é divisível por " + num2)
+    }
+
+    if (num2 % num1 == 0) {
+        console.log(num2 + " é divisível por " + num1)
+    } else {
+        console.log(num2 + " não é divisível por " + num1)
+    }
+
+    if (num1 > num2) {
+        console.log("A diferença entre eles é: " + (num1 - num2))
+    } else if (num2 > num1) {
+        console.log("A diferença entre eles é: " + (num2 - num1))
+    } else if (num1 === num2) {
+        console.log("A diferença entre eles é: " + (num2 - num1))
+    }
+
 }
-const lado1 = prompt("lado1")
-const lado2 = prompt("lado2")
-const lado3 = prompt("lado3")
-verificaTriangulo(lado1, lado2, lado3)
+funcEx5(5, 10)

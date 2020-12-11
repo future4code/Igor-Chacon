@@ -39,8 +39,23 @@ function imprimirExtrato(){
             gastoViagem += despesa.valor
         }
     }
+
+    const callback2 = (despesa, index, array) => {
+        return despesa.valor
+    }
+    //para desafio 3
+    let reducer = (acumulador, valorAtual) => { 
+        return acumulador + valorAtual
+    }
+
     arrDespesas.forEach(callback)
-    gastoTotal += gastoAlimentacao + gastoUtilidades + gastoViagem
+
+  
+    //linhas 55 e 56 para desafio 3
+    const arrValoresDespesa = arrDespesas.map(callback2)
+    gastoTotal = arrValoresDespesa.reduce(reducer)
+
+    // gastoTotal += gastoAlimentacao + gastoUtilidades + gastoViagem
 
     divExtrato.innerHTML = `<p>Extrato: Gasto Total: R$${gastoTotal} | Alimentação: R$${gastoAlimentacao} | 
                                         Utilidades: R$${gastoUtilidades} | Viagem: R$${gastoViagem}</p>`
@@ -93,19 +108,49 @@ function filtrarDespesas(){
 
     let despesasFiltradas = [] // AQUI NESSA VARIÁVEL VEM A IMPLEMENTAÇÃO
 
-    const callback = (despesas, index, array) => {
-        if (despesas.tipo === tipoFiltro && despesas.valor >= valorMin && despesas.valor <= valorMax) {
-            return true
-        } else if (tipoFiltro === "todos") {
-            return true
+    // com desafio 1
+    if (tipoFiltro && valorMin && valorMax && valorMin >= 0 && valorMax >= 0 && valorMax >= valorMin) {
+        const callback = (despesas, index, array) => {
+            if (despesas.tipo === tipoFiltro && despesas.valor >= valorMin && despesas.valor <= valorMax) {
+                return true
+            } else if (tipoFiltro === "todos") {
+                return true
+            }
+            return false
         }
-        return false
-    }
-    despesasFiltradas = arrDespesas.filter(callback)
+        despesasFiltradas = arrDespesas.filter(callback)
 
-    imprimirDespesas(despesasFiltradas)
+        imprimirDespesas(despesasFiltradas)
+    } else {
+        alert("Algo deu errado. Repita!")
+        return 0
+    }
+
+
 }
 
+//Desafio 2
+const OrdenarDespesas = () => {
+    const comparar = (a, b) => {
+        const valorA = a.valor
+        const valorB = b.valor
+        
+        let comparar = 0
+        if (valorA >= valorB) {
+            comparar = -1
+        } else if (valorA <= valorB) {
+            comparar = 1
+        }
+        return comparar
+    }
+
+    
+    arrDespesas = arrDespesas.sort(comparar)
+
+    limparFiltros()
+    imprimirDespesas(arrDespesas)
+    imprimirExtrato()
+}
 
 
 

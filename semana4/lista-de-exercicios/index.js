@@ -251,3 +251,5 @@ const anonimizarPessoa = (objPessoa) => {
 }
 novaPessoa = anonimizarPessoa(pessoa)
 // console.log(novaPessoa)
+
+// Exercícios funções de array

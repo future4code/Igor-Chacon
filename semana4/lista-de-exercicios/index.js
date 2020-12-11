@@ -96,3 +96,13 @@ e) !(booleano1) && !(booleano3) || (!booleano4 && booleano3 && booleano3)
 true
 */
 
+// 3
+// o codigo dado ainda não funciona, falta inicializar quantidadeDeNumerosPares e fazer ajustes. Também falta fazer parar e mandar imprimir apenas os pares!!!!
+const quantidadeDeNumerosPares = prompt("quantidadeDeNumerosPares")
+let i = 0
+while(i < quantidadeDeNumerosPares*2) {
+    if (i % 2 == 0) {
+        console.log(i)
+    }
+    i++
+}

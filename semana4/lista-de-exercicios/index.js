@@ -175,4 +175,25 @@ const alertando = function () {
     return alert("Hello Labenu!")
 }
 
-const alerta = alertando()
+// const alerta = alertando()
+
+// Exercícios objetos
+/*
+1.
+arrays são listas de elementos, já objetos são listas de objetos que tem chava e valor.
+Podemos usar arrays quando precisamos guardar uma lista de elementos e objetos quando queremos elementos com características próprias.
+*/
+
+// 2
+
+const criaRetangulo = (lado1, lado2) => {
+    return retanguloNovo = {
+        largura: lado1,
+        altura: lado2,
+        perimetro: 2*(lado1+lado2),
+        area: lado1*lado2,
+    }
+}
+
+ret = criaRetangulo(90, 3)
+console.log(ret)

@@ -98,11 +98,26 @@ true
 
 // 3
 // o codigo dado ainda não funciona, falta inicializar quantidadeDeNumerosPares e fazer ajustes. Também falta fazer parar e mandar imprimir apenas os pares!!!!
-const quantidadeDeNumerosPares = prompt("quantidadeDeNumerosPares")
-let i = 0
-while(i < quantidadeDeNumerosPares*2) {
-    if (i % 2 == 0) {
-        console.log(i)
+// const quantidadeDeNumerosPares = prompt("quantidadeDeNumerosPares")
+// let i = 0
+// while(i < quantidadeDeNumerosPares*2) {
+//     if (i % 2 == 0) {
+//         console.log(i)
+//     }
+//     i++
+// }
+
+// 4 
+const verificaTriangulo = (a, b, c) => {
+    if (a == b && a == c && c == b) {
+        return console.log("Triangulo Equilátero")
+    } else if (a != b && a != c && b != c) {
+        return console.log("Triangulo Escaleno")
+    } else if (a == b || a == c || b == c) {
+        return console.log("Triangulo Isósceles")
     }
-    i++
 }
+const lado1 = prompt("lado1")
+const lado2 = prompt("lado2")
+const lado3 = prompt("lado3")
+verificaTriangulo(lado1, lado2, lado3)

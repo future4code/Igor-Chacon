@@ -322,13 +322,16 @@ const pessoas = [
 
 // // a)
 
-const acessoPermitido = pessoas.filter((pessoa, index, array) => {
-    if (pessoa.idade >= 15 && pessoa.idade <= 60 && pessoa.altura >= 1.5) {
-        return true
-    }
-    return false
-})
-// console.log(acessoPermitido)
+const verificarAcessoPermitido = (pessoa) => {
+    const acessoPermitido = pessoas.filter((pessoa, index, array) => {
+        if (pessoa.idade >= 15 && pessoa.idade <= 60 && pessoa.altura >= 1.5) {
+            return true
+        }
+        return false
+    })
+}
+
+console.log(verificarAcessoPermitido(pessoas))
 
 // b) 
 const acessoNegado = pessoas.filter((pessoa, index, array) => {
@@ -374,8 +377,18 @@ const contas = [
 	{ cliente: "Soter", saldoTotal: 1200, compras: [] }
 ]
 
-const atualizarSaldo = (array) => {
+const atualizarContas = (conta) => {
     contas.forEach((conta, index, array) => {
-        totalCompras = conta.saldoTotal - 
+        totalCompras = 0
+        for (let i = 0; i < (conta.compras).length; i++) {
+            totalCompras += conta.compras[i]
+        }
+        console.log(conta.cliente, totalCompras)
+        conta.saldoTotal = conta.saldoTotal - totalCompras
     })
+    return conta
 }
+
+
+// console.log(atualizarContas(contas))
+

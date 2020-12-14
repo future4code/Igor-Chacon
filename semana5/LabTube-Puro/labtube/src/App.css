@@ -2,6 +2,8 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
+  background-color: #202020;
+  color: #fff;
 }
 
 
@@ -12,12 +14,13 @@ body {
 }
 
 header {
-  background-color: orange;
+  background-color: #202020;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
   height: 10%;
+  border-bottom: solid #313131;
 }
 
 main {
@@ -32,7 +35,12 @@ main {
 }
 
 .botoes-meunu-vertical {
+  padding: 5px 0px;
   list-style-type: none;
+}
+
+.botoes-meunu-vertical:hover {
+  background-color: #575656;
 }
 
 .painel-de-videos {
@@ -42,6 +50,7 @@ main {
   display: grid;
   grid-template-columns: repeat(4, 24.8% 0.2%);
   grid-template-rows: repeat(4, 270px 20px);
+  gap: 5px;
 }
 
 .media1 {

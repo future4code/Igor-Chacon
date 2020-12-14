@@ -15,6 +15,7 @@ function App() {
         <header>
             <h1>Future Tube</h1>
             <input type="text" placeholder="Busca" id="campoDeBusca" />
+            <div>Bell</div>
         </header>
 
         <main>

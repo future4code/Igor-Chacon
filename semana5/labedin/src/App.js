@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
+import CardPequeno from './components/CardPequeno/CardPequeno'
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
         <ImagemButton 
           imagem="https://image.flaticon.com/icons/png/512/117/117472.png" 
           texto="Ver mais"
+        />
+      </div>
+
+      <div className="littlecard-container">
+        <h2>Contatos:</h2>
+        <CardPequeno
+          email="E-mail: igorchacon@yahoo.com.br"
+          cel="Cel: +55 84 9 9999-9999"
         />
       </div>
 

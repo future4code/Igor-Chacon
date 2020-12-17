@@ -8,6 +8,7 @@ export class SecaoComentario extends Component {
 
 	onChangeComentario = (event) => {
 		this.setState({comentario: event.target.value})
+		console.log(this.state.comentario)
 	}
 
 	aoEnviar = () => {
@@ -22,7 +23,7 @@ export class SecaoComentario extends Component {
 				value={this.state.comentario}
 				onChange={this.onChangeComentario}
 			/>
-			<button onClick={this.aoEnviar}>Enviar</button>
+			<button onClick={this.props.aoEnviar}>Enviar</button>
 		</div>
 	}
 }

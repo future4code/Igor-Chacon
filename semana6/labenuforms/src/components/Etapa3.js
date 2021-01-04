@@ -20,9 +20,6 @@ function Etapa3() {
                         <option value="cursoIngles">Curso de Inglês</option>
                     </select>
                 </label>
-                <br />
-                <br />
-                <input type="submit" value="Próxima Etapa" />
             </form>
 
         </div>

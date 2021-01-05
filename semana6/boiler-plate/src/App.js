@@ -20,18 +20,7 @@ const InputsContainer = styled.div`
 
 class App extends React.Component {
     state = {
-      tarefas: [
-        {
-          id: Date.now(), // Explicação abaixo
-          texto: 'Tarefa1',
-          completa: false // Indica se a tarefa está completa (true ou false)
-        },
-        {
-          id: Date.now(), // Explicação abaixo
-          texto: 'Tarefa2',
-          completa: true // Indica se a tarefa está completa (true ou false)
-        }
-      ],
+      tarefas: [],
       inputValue: '',
       filtro: ''
     }
@@ -61,7 +50,19 @@ class App extends React.Component {
   }
 
   selectTarefa = (id) => {
+    const novaListaTarefas = this.state.tarefas.map((tarefa) => {
+      if(id == tarefa.id) {
+        const novaTarefa = {
+          ... tarefa,
+          completa: !tarefa.completa
+        }
+        return novaTarefa
+      } else {
+        return tarefa
+      }
+    })
 
+    this.setState({ tarefas: novaListaTarefas })
   }
 
   onChangeFilter = (event) => {
@@ -97,6 +98,7 @@ class App extends React.Component {
             <option value="completas">Completas</option>
           </select>
         </InputsContainer>
+        
         <TarefaList>
           {listaFiltrada.map(tarefa => {
             return (

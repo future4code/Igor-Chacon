@@ -8,36 +8,35 @@ export class CadastroUsuarios extends React.Component {
         emailValue: "",
     }
 
-    criarUsuario = () => {
-        const body = {
-            name: this.state.usuarioValue,
-            email: this.state.emailValue
+    criarUsuario = async () => {
+        try {
+            const body = {
+                name: this.state.usuarioValue,
+                email: this.state.emailValue
+            }
+
+            const resposta = await axios
+                .post(
+                    "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
+                    body,
+                    {
+                        headers: {
+                            Authorization: "igor-chacon-epps"
+                        }
+                    })
+            this.setState({ usuarioValue: "" })
+            this.setState({ emailValue: "" })
+            alert("O usuário foi cadastrado com sucesso!!!")
+        } catch (err) {
+            console.log(err.message)
+            console.log("deu erro!")
+            alert("Algo de errado ocorreu. Usuário não foi cadastrado. " + err.message)
         }
 
-        axios
-            .post(
-                "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-                body,
-                {
-                    headers: {
-                        Authorization: "igor-chacon-epps"
-                    }
-                }
-            )
-            .then((res) => {
-                this.setState({ usuarioValue: "" })
-                this.setState({ emailValue: "" })
-                alert("O usuário foi cadastrado com sucesso!!!")
-            })
-            .catch((err) => {
-                console.log(err.message)
-                console.log("deu erro!")
-                alert("Algo de errado ocorreu. Usuário não foi cadastrado. " + err.message)
-            })
     }
 
 
-    
+
 
     render() {
         const onChangeUsuarioValue = (event) => {
@@ -52,19 +51,19 @@ export class CadastroUsuarios extends React.Component {
                 <from>
                     <label>Nome do Usuário: </label>
 
-                    <input 
-                    placeholder="Nome do usuário" 
-                    value={this.state.usuarioValue} 
-                    onChange={onChangeUsuarioValue} 
+                    <input
+                        placeholder="Nome do usuário"
+                        value={this.state.usuarioValue}
+                        onChange={onChangeUsuarioValue}
                     />
 
                     <br />
 
                     <label>E-mail do Usuário: </label>
-                    <input 
-                    placeholder="E-mail do usuário" 
-                    value={this.state.emailValue} 
-                    onChange={onChangeEmailValue} 
+                    <input
+                        placeholder="E-mail do usuário"
+                        value={this.state.emailValue}
+                        onChange={onChangeEmailValue}
                     />
 
                     <br />

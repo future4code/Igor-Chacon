@@ -27,11 +27,16 @@ export class CadastroUsuarios extends React.Component {
             .then((res) => {
                 this.setState({ usuarioValue: "" })
                 this.setState({ emailValue: "" })
+                alert("O usuário foi cadastrado com sucesso!!!")
             })
             .catch((err) => {
                 console.log(err.message)
+                console.log("deu erro!")
+                alert("Algo de errado ocorreu. Usuário não foi cadastrado. " + err.message)
             })
     }
+
+
     
 
     render() {
@@ -64,7 +69,7 @@ export class CadastroUsuarios extends React.Component {
 
                     <br />
 
-                    <button>Salvar</button>
+                    <button onClick={this.criarUsuario}>Salvar</button>
                 </from>
             </div>
         )

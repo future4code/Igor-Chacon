@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+.divCadastro {
+  border: solid 1px black;
+  padding: 5%;
+  box-shadow: 0 0 1em white;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

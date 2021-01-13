@@ -3,13 +3,12 @@ import axios from "axios";
 import './App.css';
 import CadastroUsuarios from './components/CadastroUsuarios.js'
 import ListarUsuarios from './components/ListarUsuarios.js'
+import DetalhesUsuario from './components/DetalhesUsuario.js'
 
 export class App extends React.Component {
 
   state = {
     etapa: 2,
-    usuarios: [],
-    usuariosValue: '',
   }
 
   
@@ -20,13 +19,17 @@ export class App extends React.Component {
         return <CadastroUsuarios />
       case 2:
         return <ListarUsuarios />
+      case 3:
+        return <DetalhesUsuario />
+      default:
+        return <CadastroUsuarios />
     }
   }
 
   render() {
 
     const mudarEtapa = () => {
-      if (this.state.etapa == 1) {
+      if (this.state.etapa === 1) {
         this.setState( {
           etapa: this.state.etapa + 1
         })
@@ -37,19 +40,20 @@ export class App extends React.Component {
       }
     }
 
-    const onChangeUsuarioValue = (event) => {
-      this.setState({ usuarioValue: event.target.value });
-  }
+ 
 
     return (
       <div className="App">
         <div className="App-header">
 
-          { this.state.etapa == 1 ? 
-          <button onClick={mudarEtapa}>Ir para lista</button> : 
-          <button onClick={mudarEtapa}>Ir para cadastro</button> }
+          <div  className="divCadastro" >{ this.renderizarEtapa() }</div>
+          
 
-          { this.renderizarEtapa() }
+          <div>
+            { this.state.etapa === 2 ? 
+            <button onClick={mudarEtapa}>Ir para cadastro</button> : 
+            <button onClick={mudarEtapa}>Ir para lista</button> }
+          </div>
 
         </div>
       </div>

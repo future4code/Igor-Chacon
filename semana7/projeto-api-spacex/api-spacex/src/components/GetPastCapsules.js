@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 
-export class GetCapsules extends React.Component {
+export class GetPastCapsules extends React.Component {
 
     state = {
         capsulas: [],
@@ -9,14 +9,14 @@ export class GetCapsules extends React.Component {
     }
 
     componentDidMount = () => {
-        this.pegarCapsulas()
+        this.pegarCapsulasAntigas()
     }
 
-    pegarCapsulas = async () => {
+    pegarCapsulasAntigas = async () => {
         try {
             const res = await axios
                 .get(
-                    'https://api.spacexdata.com/v3/capsules',
+                    'https://api.spacexdata.com/v3/capsules/past',
                 )
             this.setState({ capsulas: res.data })
         } catch (err) {
@@ -31,7 +31,9 @@ export class GetCapsules extends React.Component {
              Status: {capsula.status} │
              Tipo: {capsula.type} │
              <br />
-             Missão: {capsula.mission} │ Lançado em: {capsula.original_launch} │
+             Detalhes: {capsula.details}
+             <br />
+              │ Lançado em: {capsula.original_launch} │
             Lançamentos: {capsula.landings}
             </p>
         })
@@ -39,11 +41,11 @@ export class GetCapsules extends React.Component {
         return (
             <div>
                 <br />
-                Capsulas Lançadas:
+                Capsulas Antigas:
                 <p>{renderCapsulas}</p>
             </div>
         )
     }
 }
 
-export default GetCapsules;
+export default GetPastCapsules;

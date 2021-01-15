@@ -35,6 +35,7 @@ export class GetPastCapsules extends React.Component {
              <br />
               │ Lançado em: {capsula.original_launch} │
             Lançamentos: {capsula.landings}
+            <hr />
             </p>
         })
 
@@ -42,6 +43,8 @@ export class GetPastCapsules extends React.Component {
             <div>
                 <br />
                 Capsulas Antigas:
+                <br />
+                {this.state.capsulas.length === 0 && <div>Carregando...</div>}
                 <p>{renderCapsulas}</p>
             </div>
         )

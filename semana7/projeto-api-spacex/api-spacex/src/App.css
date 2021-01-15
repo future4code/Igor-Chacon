@@ -18,6 +18,21 @@
   top: 0;
 }
 
+button {
+  margin: 0 5px;
+}
+
+p {
+  margin: 0 50px;
+}
+
+a:link {
+  color: gray;
+}
+a:visited {
+  color: gray;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

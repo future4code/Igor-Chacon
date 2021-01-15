@@ -5,11 +5,12 @@ import GetPastCapsules from './components/GetPastCapsules.js'
 import GetOneCapsule from './components/GetOneCapsule.js'
 // import axios from "axios";
 import './App.css';
+import GetMissoes from './components/GetMissoes.js';
 
 export class App extends React.Component {
 
   state = {
-    etapa: 4,
+    etapa: 1,
   }
 
   renderEtapa = () => {
@@ -22,6 +23,8 @@ export class App extends React.Component {
         return <GetPastCapsules />
       case 4:
         return <GetOneCapsule />
+      case 5:
+        return <GetMissoes />
       default:
         return <GetCapsules />
     }
@@ -32,7 +35,7 @@ export class App extends React.Component {
   render() {
 
     const mudarEtapa = () => {
-      if (this.state.etapa < 4) {
+      if (this.state.etapa < 5) {
         this.setState({ etapa: this.state.etapa + 1})
       } else {
         this.setState({ etapa: 1 })
@@ -54,6 +57,10 @@ export class App extends React.Component {
       this.setState({ etapa: 4 })
     }
 
+    const renderMissoes = () => {
+      this.setState({ etapa: 5 })
+    }
+
     
 
     return (
@@ -61,11 +68,12 @@ export class App extends React.Component {
         <header className="App-header">
 
           <div className="botoes">
-            <button  onClick={mudarEtapa}>Ir para próxima etapa</button>
-            <button onClick={renderLista}>Ir para lista</button>
-            <button onClick={renderBusca}> Ir para Busca</button>
-            <button onClick={renderAntigos}> Ir para Lançamentos Antigos</button>
-            <button onClick={renderNovos}> Ir para Lançamentos Novos</button>
+            <button  onClick={mudarEtapa}>Próxima etapa</button>
+            <button onClick={renderLista}>Lista</button>
+            <button onClick={renderBusca}>Busca</button>
+            <button onClick={renderAntigos}>Lançamentos Antigos</button>
+            <button onClick={renderNovos}>Lançamentos Novos</button>
+            <button onClick={renderMissoes}> Missões</button>
           </div>
           
 

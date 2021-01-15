@@ -29,7 +29,7 @@ export class App extends React.Component {
           `https://free-nba.p.rapidapi.com/teams`,
           {
             headers: {
-              'x-rapidapi-key': '628b1c43b9msh5b2220f9b3aa380p140c72jsnde71a7904a27',
+              'x-rapidapi-key': '',
               'x-rapidapi-host': 'free-nba.p.rapidapi.com'
             }, 
           }

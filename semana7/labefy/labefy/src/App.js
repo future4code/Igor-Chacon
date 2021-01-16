@@ -9,7 +9,7 @@ import './App.css';
 export class App extends React.Component {
 
   state = {
-    etapa: 5,
+    etapa: 6,
   }
 
   render () {
@@ -35,7 +35,7 @@ export class App extends React.Component {
     }
 
     const irAddMusica = () => {
-      this.setState({ etapa: 5 })
+      this.setState({ etapa: 6 })
     }
 
     const renderEtapa = () => {
@@ -59,8 +59,7 @@ export class App extends React.Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-         <div className="buttonDiv"> 
+        <div className="buttonDiv"> 
           <button onClick={() => {irHome()}}>Home</button>
           <button onClick={() => {irCriarPlay()}}>Criar Playlists</button>
           <button onClick={() => {irPlaylist()}}>Playlists</button> 
@@ -69,8 +68,11 @@ export class App extends React.Component {
           <button onClick={() => {irAddMusica()}}>Add música</button>
           
         </div>
-        {renderEtapa()}
-        </header>
+
+        <body className="App-header">
+          {renderEtapa()}
+        </body>
+
       </div>
     )
   }

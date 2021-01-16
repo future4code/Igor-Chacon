@@ -22,24 +22,51 @@ export class GetPlaylists extends React.Component {
                             Authorization: "igor-chacon-epps"
                         }
                     })
-                    this.setState({ playlists: res.data })
+                    this.setState({ playlists: res.data.result.list })
                     console.log(res.data)
         } catch (err) {
             console.log(err.message)
         }
     }
+
+    
     
     render () {
 
-        // const renderPlaylists = this.state.playlists.map((playlist) => {
-        //     return <p> {playlist.id} </p>
-        // })
+        const deletePlaylist = async (playlistId) => {
+            if(window.confirm("Deseja realmente excluir essa playlist?")) {
+                try {
+                    const res = await axios
+                        .delete(
+                            `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}`,
+                            {
+                                headers: {
+                                    Authorization: "igor-chacon-epps"
+                                }
+                            })
+                            this.pegarPlaylists()
+                            alert(`A playlist foi excluída`)
+                } catch (err) {
+                    console.log(err.message)
+                }
+            } else {
+                alert("Item não excluído.")
+            }
+            
+    
+        }
+
+        const renderPlaylists = this.state.playlists.map((playlist) => {
+            return <div> {playlist.name} <button onClick={() => {deletePlaylist(playlist.id)}} >X</button> <hr /> </div> 
+        })
+
+        
 
 
         return (
             <div>
-                GetPlaylists
-
+                - Playlists -
+                {renderPlaylists}
             </div>
         )
     }

@@ -15,10 +15,10 @@
 }
 
 .buttonDiv {
+  overflow: hidden;
   position: fixed;
   width: 100%;
-  top: 2%;
-  background-color: gray;
+  bottom: 5%;
 }
 
 button {

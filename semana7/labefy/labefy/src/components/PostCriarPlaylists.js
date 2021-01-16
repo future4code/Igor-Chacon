@@ -26,7 +26,11 @@ export class PostCriarPlaylists extends React.Component {
             this.setState({ playlistValue: "" })
             alert('Cadastro feito com sucesso!')
         } catch (err) {
-            alert(err.message)
+            console.log(err.message)
+            alert("Erro ao cadastrar")
+            if (err.message === "Request failed with status code 400") {
+                alert("Essa playlist já existe")
+            }
         }
     }
     render() {

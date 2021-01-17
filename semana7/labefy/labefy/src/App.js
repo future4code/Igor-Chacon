@@ -9,7 +9,7 @@ import './App.css';
 export class App extends React.Component {
 
   state = {
-    etapa: 6,
+    etapa: 1,
   }
 
   render () {

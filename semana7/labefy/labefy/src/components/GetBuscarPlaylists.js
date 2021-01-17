@@ -6,9 +6,31 @@ export class GetBuscarPlaylists extends React.Component {
     state = {
         playlists: [],
         playlistValue: '',
+        musicas: [],
+        verificarBuscarMusicas: false,
+    }
+
+
+    buscarMusicasDaPlaylist = async (playlistId) => {
+        try {
+            const res = await axios
+                .get(
+                    `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`,
+                    {
+                        headers: {
+                            Authorization: "igor-chacon-epps"
+                        }
+                    })
+                this.setState({ musicas: res.data.result.tracks })
+                console.log("buscarMusicasDaPlaylist")
+        } catch (err) {
+            console.log(err)
+        }
     }
     
     render () {
+
+       
 
         const  buscarPlaylists = async (playlistName) => {
             try {
@@ -21,24 +43,29 @@ export class GetBuscarPlaylists extends React.Component {
                             }
                         })
                         this.setState({ playlists: res.data.result.playlist })
-                        console.log(res.data)
+                        this.setState({ verificarBuscarMusicas: true })
             } catch (err) {
                 console.log(err.message)
             }
         }
+        
+        
 
         const onChangePlaylistValue = (e) => {
                 this.setState({ playlistValue: e.target.value })
-        }
+            }
 
         const renderPlaylists = this.state.playlists.map((playlist) => {
-            return <div> <p> Nome da Playlist: {playlist.name} <br/> Músicas: {playlist.url === undefined ? <span>Sem músicas</span>: <span> {playlist.url} </span> } </p> <hr /> </div> 
+            return <div> <p> Nome da Playlist: {playlist.name} <br/> Músicas: {this.state.musicas.name === undefined ? 
+            <span>Sem músicas</span> : 
+            <span> {this.state.musicas.name} </span> } </p> <hr /> 
+            </div> 
         })
 
         return (
             <div>
                 <from>
-                    <label>Busque uma playlist para detalhes: </label>
+                    <label>Busque uma playlist para detalhes1: </label>
                     <br/>
                     <input
                         placeholder="Nome da playlist"

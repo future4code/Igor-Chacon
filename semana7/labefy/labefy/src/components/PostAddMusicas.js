@@ -31,11 +31,11 @@ export class PostAddMusicas extends React.Component {
             try {
                 const res = await axios
                     .post(
-                        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/traks`,
+                        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`,
                         body,
                         {
                             headers: {
-                                Autorization: 'igor-chacon-epps'
+                                Authorization: "igor-chacon-epps"
                             }
                         })
                 this.setState({ artistNameValue: "", musicNameValue: "", musicURLValue: ""})
@@ -56,7 +56,6 @@ export class PostAddMusicas extends React.Component {
                             }
                         })
                         this.setState({ playlists: res.data.result.playlist })
-                        console.log(res.data)
             } catch (err) {
                 console.log(err.message)
             }
@@ -103,7 +102,7 @@ export class PostAddMusicas extends React.Component {
         const renderPlaylists = this.state.playlists.map((playlist) => {
             return (
             <div> 
-                <p> Nome da Playlist: {playlist.name} <br/> Músicas: {playlist.tracks === [] ? <span>Sem músicas</span>: <span> {renderMusicas} </span> } </p> 
+                <p> Nome da Playlist: {playlist.name} <br/></p> 
                 <div>
                     <input
                     placeholder="Nome da Música"
@@ -129,6 +128,7 @@ export class PostAddMusicas extends React.Component {
                     <button onClick={() => addMusicToPlaylist(playlist.id)}>Salvar</button>
                     </div>
                     <hr /> 
+                    
             </div> 
             )
         })
@@ -161,6 +161,9 @@ export class PostAddMusicas extends React.Component {
 
                     {renderPlaylists}
                     
+                    <br/>
+                    <br/>
+                    <br/>
                     <br/>
 
                     

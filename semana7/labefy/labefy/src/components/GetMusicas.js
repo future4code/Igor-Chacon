@@ -34,7 +34,7 @@ export class GetMusicas extends React.Component {
     }
 
     const renderMusicas = this.state.musicas.map((musica) => {
-        return <p> {musica.artist}: {musica.name} </p>
+        return <p> {musica.artist}: {musica.name} <br /> <audio controls> <source src={musica.url} type="audio/mpeg"/> </audio> </p>
     })
 
     const renderPlaylists = this.state.playlists.map((playlist) => {

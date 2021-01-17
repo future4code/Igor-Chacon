@@ -23,7 +23,6 @@ export class GetPlaylists extends React.Component {
                         }
                     })
                     this.setState({ playlists: res.data.result.list })
-                    console.log(res.data)
         } catch (err) {
             console.log(err.message)
         }

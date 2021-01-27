@@ -14,21 +14,51 @@ const Post = (props) => {
 
   const [numeroCurtidas, setNumeroCurtidas] = useState(0)
 
-  const [comentado, setComentado] = useState(false)
+  const [comentando, setComentado] = useState(false)
 
   const [numeroComentarios, setNumeroComentarios] = useState(0)
 
+  const [todosComentarios, setComentarios] = useState([])
+
   
   const onClickCurtida = () => {
-    setCurtido(curtido = true)
-    setNumeroCurtidas(numeroCurtidas + 1)
+    if(curtido) {
+      setCurtido(!curtido)
+      setNumeroCurtidas(numeroCurtidas - 1)
+    } else {
+      setCurtido(!curtido)
+      setNumeroCurtidas(numeroCurtidas + 1)
+    }
+    
   };
 
   const onClickComentario = () => {
+    setComentado(!comentando)
   };
 
   const enviarComentario = (comentario) => {
+    setNumeroComentarios(numeroComentarios + 1)
+    const novaListaComentarios = [...todosComentarios, comentario]
+    console.log(comentario)
+    setComentado(false)
+    setComentarios(novaListaComentarios)
+    console.log(todosComentarios)
   }
+
+  const iconeCurtida = curtido ? (iconeCoracaoPreto) : (iconeCoracaoBranco)
+
+
+  const caixaDeComentario = comentando ? (
+    <SecaoComentario enviarComentario={enviarComentario}/>
+  ) : (
+    todosComentarios.map(comentario => {
+      return (
+        <CommentContainer>
+          <p>{comentario}</p>
+        </CommentContainer>
+      )
+    })
+  )
 
   return (
     <PostContainer>
@@ -41,18 +71,18 @@ const Post = (props) => {
 
       <PostFooter>
         <IconeComContador
-          // icone={iconeCurtida}
+          icone={iconeCurtida}
           onClickIcone={onClickCurtida}
-          // valorContador={numeroCurtidas}
+          valorContador={numeroCurtidas}
         />
 
         <IconeComContador
           icone={iconeComentario}
           onClickIcone={onClickComentario}
-          // valorContador={numeroComentarios}
+          valorContador={numeroComentarios}
         />
       </PostFooter>
-      {/* {caixaDeComentario} */}
+      {caixaDeComentario}
     </PostContainer>
   )
 }

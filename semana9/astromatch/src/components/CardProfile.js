@@ -9,21 +9,39 @@ const ImagemPerfil = styled.img`
     max-height: 250px;
 `
 const Texto = styled.p`
-    color: green;
     align-text: center;
     margin: 0;
     padding: 0 25% 0 25%;
 `
+const Button = styled.button`
+    background-color: lightgreen;
+    margin: 0 5% 0 5%;
+    border-radius: 10px;
+    &:hover {
+        color: white;
+      }
+`
+
 export default function CardProfile () {
 
     const [perfil, setPerfil] = useState({})
 
     const pegarPerfil = () => {
         const res = axios.get(
-            "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/person"
+            "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/igor-chacon/person"
         )
         .then(res => setPerfil(res.data.profile))
         .catch(err => console.log(err))
+    }
+
+    const darMatch = (id) => {
+        axios.post(
+            "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/igor-chacon/choose-person",
+            {
+                "id": {id},
+                "choice": "true"
+            }
+        )
     }
 
     useEffect(() => {
@@ -41,7 +59,11 @@ export default function CardProfile () {
                 {perfil.age}
                 <br />
                 {perfil.bio}
+                <br />
             </Texto>
+
+            <Button onClick={() => darMatch(perfil.id)}>Match</Button>
+            <Button onClick={pegarPerfil}>Unmatch</Button>
             
         </div>
     )

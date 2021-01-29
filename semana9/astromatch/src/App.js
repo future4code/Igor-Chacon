@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios'
 import React from 'react'
 import './App.css';
 import CardProfile from './components/CardProfile.js'
@@ -12,10 +13,17 @@ const Button = styled.button`
     &:hover {
         color: white;
       }
-    margin-left: 25%;
 `
 
-function App() {
+const Body = styled.div`
+    color: white;
+    margin: 3% 35% 5% 35%;
+    padding: 0 0 2% 0;
+    background-color: grey;
+    border: solid gray 2px
+`
+
+function App(props) {
 
   const [tela, setTela] = useState(true)
 
@@ -27,14 +35,29 @@ function App() {
     }
   }
 
+  const limparMatches = () => {
+    axios.put(
+        "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/igor-chacon/clear"
+    )
+    .then(alert("Metches limpas! (ninguém viu...)"))
+    .catch(err => console.log(err))
+}
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Button onClick={mudarTela}>Matches</Button>
-        {tela ? <CardProfile /> : <MatchesList />}
+      <Body>
+        <divButoes>
+              <div>Astromatch</div>
+              <br />
+              <Button onClick={mudarTela} className="botao1">Matches</Button>
+              <Button onClick={() => limparMatches()}>Limpar Matches</Button>
+            </divButoes>
+            <br />
+            <br />
+            <br />
+            {tela ? <CardProfile /> : <MatchesList />}
+      </Body>
         
-      </header>
     </div>
   );
 }

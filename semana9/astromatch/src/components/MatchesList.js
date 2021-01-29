@@ -25,6 +25,10 @@ export default function MatchesList () {
         pegarMatches()
     }, [])
 
+    useEffect(() => {
+        pegarMatches()
+    }, [matches])
+
     const renderMatches = matches.map((match) => {
         return <div> <ImagemPerfil src={match.photo}></ImagemPerfil> <div>{match.name}</div> <hr />  </div>
     })

@@ -38,10 +38,12 @@ export default function CardProfile () {
         axios.post(
             "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/igor-chacon/choose-person",
             {
-                "id": {id},
+                "id": id,
                 "choice": "true"
             }
         )
+        .then(alert(`Dado match!`))
+        .catch(err => alert(err))
     }
 
     useEffect(() => {
@@ -61,7 +63,8 @@ export default function CardProfile () {
                 {perfil.bio}
                 <br />
             </Texto>
-
+            <br />
+            <br />
             <Button onClick={() => darMatch(perfil.id)}>Match</Button>
             <Button onClick={pegarPerfil}>Unmatch</Button>
             

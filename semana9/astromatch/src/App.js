@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
 import React from 'react'
 import './App.css';
@@ -20,7 +20,8 @@ const Body = styled.div`
     margin: 3% 35% 5% 35%;
     padding: 0 0 2% 0;
     background-color: grey;
-    border: solid gray 2px
+    border: solid gray 2px;
+    border-radius: 5%5ch;
 `
 
 function App(props) {

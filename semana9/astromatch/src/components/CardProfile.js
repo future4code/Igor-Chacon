@@ -2,18 +2,11 @@ import { useEffect, useState } from "react"
 import React from 'react'
 import axios from 'axios'
 import styled from "styled-components"
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Button';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { makeStyles } from '@material-ui/core/styles';
-import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
-
-const divLike = styled.div`
-    background-color: red;
-`
 
 const ImagemPerfil = styled.img`
     align-text: center;
@@ -24,14 +17,6 @@ const Texto = styled.p`
     align-text: center;
     margin: 0;
     padding: 0 25% 0 25%;
-`
-const ButtonMeu = styled.button`
-    background-color: lightgreen;
-    margin: 0 5% 0 5%;
-    border-radius: 10px;
-    &:hover {
-        color: white;
-      }
 `
 
 export default function CardProfile () {
@@ -64,19 +49,6 @@ export default function CardProfile () {
         pegarPerfil()
     }, [])
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-          '& > *': {
-            margin: theme.spacing(1),
-          },
-        },
-        extendedIcon: {
-          marginRight: theme.spacing(1),
-        },
-      }));
-
-    const classes = useStyles();
-
     return (
         <div>
             
@@ -87,9 +59,7 @@ export default function CardProfile () {
 
             <br />
             <Texto>
-                {perfil.name}
-                <br />
-                {perfil.age}
+                {perfil.name}, {perfil.age}
                 <br />
                 {perfil.bio}
                 <br />

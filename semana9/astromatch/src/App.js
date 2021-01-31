@@ -7,18 +7,9 @@ import CardProfile from './components/CardProfile.js'
 import MatchesList from './components/MatchesList.js'
 import styled from "styled-components"
 import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
-
-const ButtonMeu = styled.button`
-    background-color: lightgreen;
-    margin: 0 5% 0 5%;
-    border-radius: 10px;
-    &:hover {
-        color: white;
-      }
-`
 
 const Body = styled.div`
     color: grey;
@@ -26,9 +17,16 @@ const Body = styled.div`
     padding: 0 0 2% 0;
     border: solid gray 2px;
     border-radius: 5%5ch;
+    .divTopo {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2% 0 3%;
+      vertical-align: middle;
+      align-items: center;
+    }
 `
 
-function App(props) {
+function App() {
 
   const [tela, setTela] = useState(true)
 
@@ -59,28 +57,26 @@ function App(props) {
   return (
     <div className="App">
       <Body>
-        <divButoes>
-              <div>Astromatch</div>
-              <br />
-              <Button
-                onClick={mudarTela}
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-              >
-                Matches
-              </Button>
+        <div className="divTopo">
+          <Button>
+            <SupervisedUserCircleIcon 
+            onClick={mudarTela}
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+          />
+          </Button>
 
-              <Button
-                onClick={() => limparMatches()}
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                startIcon={<DeleteIcon />}
-              >
-                Limpar Matches
-              </Button>
-        </divButoes>
+          <h3>Astromatch</h3>
+
+          <Button
+            onClick={() => limparMatches()}
+            color="secondary"
+            className={classes.button}
+            startIcon={<DeleteIcon />}
+          />
+        </div>
+              
             <br />
             <br />
             <br />

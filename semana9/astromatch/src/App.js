@@ -1,12 +1,17 @@
 import { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import React from 'react'
 import './App.css';
 import CardProfile from './components/CardProfile.js'
 import MatchesList from './components/MatchesList.js'
 import styled from "styled-components"
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 
-const Button = styled.button`
+
+const ButtonMeu = styled.button`
     background-color: lightgreen;
     margin: 0 5% 0 5%;
     border-radius: 10px;
@@ -16,10 +21,9 @@ const Button = styled.button`
 `
 
 const Body = styled.div`
-    color: white;
+    color: grey;
     margin: 3% 35% 5% 35%;
     padding: 0 0 2% 0;
-    background-color: grey;
     border: solid gray 2px;
     border-radius: 5%5ch;
 `
@@ -44,15 +48,39 @@ function App(props) {
     .catch(err => console.log(err))
 }
 
+    const useStyles = makeStyles((theme) => ({
+      button: {
+        margin: theme.spacing(1),
+      },
+    }));
+
+    const classes = useStyles();
+
   return (
     <div className="App">
       <Body>
         <divButoes>
               <div>Astromatch</div>
               <br />
-              <Button onClick={mudarTela} className="botao1">Matches</Button>
-              <Button onClick={() => limparMatches()}>Limpar Matches</Button>
-            </divButoes>
+              <Button
+                onClick={mudarTela}
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                Matches
+              </Button>
+
+              <Button
+                onClick={() => limparMatches()}
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                startIcon={<DeleteIcon />}
+              >
+                Limpar Matches
+              </Button>
+        </divButoes>
             <br />
             <br />
             <br />

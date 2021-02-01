@@ -8,7 +8,7 @@ import DetalhesUsuario from './components/DetalhesUsuario.js'
 export class App extends React.Component {
 
   state = {
-    etapa: 2,
+    etapa: 1,
   }
 
   

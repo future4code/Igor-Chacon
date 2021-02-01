@@ -12,74 +12,68 @@ export class ListarUsuarios extends React.Component {
         this.pegarUsuarios()
     }
 
-    pegarUsuarios = () => {
-        axios
-            .get(
-                "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-                {
-                    headers: {
-                        Authorization: "igor-chacon-epps"
-                    }
-                }
-            )
-            .then((resposta) => {
-                this.setState({ usuarios: resposta.data })
-            })
-            .catch((err) => {
-                console.log(err.message)
-            })
+
+    pegarUsuarios = async () => {
+        try {
+            const resposta = await axios
+                .get(
+                    "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
+                    {
+                        headers: {
+                            Authorization: "igor-chacon-epps"
+                        }
+                    })
+            this.setState({ usuarios: resposta.data })
+        } catch (err) {
+            console.log(err.message)
+        }
     }
 
 
     render() {
 
-        const deletarUsuario = (userId) => {
-            if (window.confirm("Tem certeza que deseja excluir esse usuário?")) {
-                const request = axios
-                    .delete
-                    (
-                        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
-                        {
-                            headers: {
-                                Authorization: "igor-chacon-epps"
-                            }
-                        }
-                    )
+        const deletarUsuario = async (userId) => {
+            try {
+                if (window.confirm("Tem certeza que deseja excluir esse usuário?")) {
+                    const request = await axios
+                        .delete
+                        (
+                            `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
+                            {
+                                headers: {
+                                    Authorization: "igor-chacon-epps"
+                                }
+                            })
+                    this.pegarUsuarios()
+                    alert(`O usuário foi excluído.`)
 
-                request
-                    .then((res) => {
-                        this.pegarUsuarios()
-                        alert(`O usuário foi excluído.`)
-                    })
-                    .catch((err) => {
-                        console.log(`Erro: ${err.message}`)
-                        alert(`Erro ao excluir o usuário. Ele não foi excluído.`)
-                    })
-            } else {
-                return alert("Usuário não excluído.")
+                } else {
+                    return alert("Usuário não excluído.")
+                }
+            } catch (err) {
+                    console.log(`Erro: ${err.message}`)
+                    alert(`Erro ao excluir o usuário. Ele não foi excluído.`)
+                }
             }
+        
 
-
-        }
-
-        const chamarDetalhes = (userId) => {
-            axios
+        const chamarDetalhes = async (userId) => {
+            try {
+                const resposta = await axios
                 .get(
                     `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
                     {
                         headers: {
                             Authorization: "igor-chacon-epps"
                         }
-                    }
-                )
-                .then((resposta) => {
+                    })
                     this.setState({ usuario: resposta.data })
                     console.log(this.state.usuario.name)
-                })
-                .catch((err) => {
+
+                } catch(err) {
                     console.log(err.message)
-                })
-        }
+                }
+            }
 
 
         const renderUsuarios = this.state.usuarios.map((usuario) => {
@@ -96,10 +90,10 @@ export class ListarUsuarios extends React.Component {
 
                 <div>
                     {nomeUsuario}
-                    <br/>
+                    <br />
                     {emailUsuario}
                 </div>
-            
+
             </div>
         )
     }

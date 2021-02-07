@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import {goToLoginPage} from "../Routes/Coordinator.js"
+import {goToUserLoginPage, goToAdmLoginPage} from "../Routes/Coordinator.js"
 
 const HomePage = () => {
     const history = useHistory()
@@ -10,10 +10,12 @@ const HomePage = () => {
     }
     return(
         <div>
+            <button onClick={() => goToUserLoginPage(history)}>Ir para UserLoginPage</button>
+            <button onClick={() => goToAdmLoginPage(history)}>Ir para goToAdmLoginPage</button>
             <h1>
             HomePage
             </h1>
-            <button onClick={() => goToLoginPage(history)}>Ir para LoginPage</button>
+            
             <button onClick={goBack}>Voltar</button>
         </div>
     )

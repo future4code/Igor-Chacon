@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import {goToHomePage, goToTripDetailsPage, goToAdminPage} from "../Routes/Coordinator.js"
+import {goToHomePage, goToTripDetailsPage, goToCreateTripPage} from "../Routes/Coordinator.js"
 
-const CreateTripPage = () => {
+const AdminPage = () => {
     const history = useHistory()
 
     const goBack = () => {
@@ -10,16 +10,13 @@ const CreateTripPage = () => {
     }
     return(
         <div>
+            <h1>AdminPage</h1>
             <button onClick={() => goToHomePage(history)}>Ir para HomePage</button>
             <button onClick={() => goToTripDetailsPage(history)}>Ir para TripDetailsPage (edit)</button>
-            <button onClick={() => goToAdminPage(history)}>Ir para goToAdminPage</button>
-        
-            <h1>CreateTripPage</h1>
-
+            <button onClick={() => goToCreateTripPage(history)}>Ir para goToCreateTripPage</button>
             <button onClick={goBack}>Voltar</button>
-            
         </div>
     )
 }
 
-export default CreateTripPage
+export default AdminPage

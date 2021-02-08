@@ -1,22 +1,15 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
-import {goToUserLoginPage, goToAdmLoginPage} from "../Routes/Coordinator.js"
+import Menu from '../components/Menu.js'
+import styled from 'styled-components'
+import HomeContent from '../components/HomeContent.js'
+
 
 const HomePage = () => {
-    const history = useHistory()
 
-    const goBack = () => {
-        history.goBack()
-    }
     return(
         <div>
-            <button onClick={() => goToUserLoginPage(history)}>Ir para UserLoginPage</button>
-            <button onClick={() => goToAdmLoginPage(history)}>Ir para goToAdmLoginPage</button>
-            <h1>
-            HomePage
-            </h1>
-            
-            <button onClick={goBack}>Voltar</button>
+            <Menu />
+            <HomeContent />
         </div>
     )
 }

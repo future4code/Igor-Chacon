@@ -67,7 +67,7 @@ const UserLoginPage = () => {
     }
     const handlePasswold = (e) => {
         setPasswold(e.target.value);
-      }
+    }
 
     const login = () => {
         const body = {

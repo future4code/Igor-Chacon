@@ -44,6 +44,7 @@ const LoginPage = () => {
             )
             .then((res) => {
               localStorage.setItem("token", res.data.token);
+              console.log(res.data.token)
               alert("Entrando!")
               goToFeedPage(history)
             })

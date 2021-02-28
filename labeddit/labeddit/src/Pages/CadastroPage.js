@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import {useState} from 'react'
 import { useHistory } from "react-router-dom";
-import { goToLoginPage } from '../Routers/Conductor'
+import { goToLoginPage, goToFeedPage } from '../Routers/Conductor'
 
 const CadastroPage = () => {
 
@@ -51,8 +51,7 @@ const CadastroPage = () => {
             .then((res) => {
               localStorage.setItem("token", res.data.token);
               alert("Cadastro feito!")
-              setEmail('')
-              setPassword('');
+              goToFeedPage(history)
             })
             .catch((err) => {
               console.log(err.message);

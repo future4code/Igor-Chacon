@@ -9,3 +9,11 @@ export const goToCadastroPage = (history) => {
 export const goToFeedPage = (history) => {
     history.push("/feed")
 }
+
+export const goToDetalhesPostPage = (history, id) => {
+    history.push(`/detalhes/${id}`)
+}
+
+export const goBack = (history) => {
+    history.goBack();
+}

@@ -7,6 +7,8 @@ const CardNewPost = () => {
     const [novoPost, setNovoPost] = useState('')
     const [novoPosTitle, setNovoPostTitle] = useState('')
 
+    const token = localStorage.getItem("token");
+
     const setNewPost = () => {
         const body = {
             text: novoPost,
@@ -18,13 +20,14 @@ const CardNewPost = () => {
                 body,
                 {
                     headers: {
-                        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA2SjQyTWhjWHF3UUNBZWRQMkJHIiwiZW1haWwiOiJpZ29ydmNoYWNvbkBnbWFpbC5jb20iLCJ1c2VybmFtZSI6Imlnb3JjaGFjb24iLCJpYXQiOjE2MTQwMjY3Nzh9.T1SuUd1fa8Z2XagNvT1qUDkiblarOQ2YAlTt2D5Ivl0"
+                        "Authorization": `${token}`
                     }
                 }
                 )
             .then((res) => {
                 setNovoPost('')
                 setNovoPostTitle('')
+                alert("Mensagem postada!")
             })
             .catch((err) => {
                 console.log(err.message)

@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
+import axios from 'axios';
+import { BASE_URL } from '../../Constants/urls.js';
 
 const CardPost = (props) => {
     const history = useHistory();
+
+    const token = localStorage.getItem("token");
 
     const StyleCardPost = styled.div`
     border: solid 1px black;
@@ -15,23 +19,80 @@ const CardPost = (props) => {
     margin: 2%;
 `
 
+const handleGoToPostDetail = () => {
+    history.push(`/detalhes/${props.post.id}`)
+}
+
+
+const votePostMais = (id) => {
+    const body = {
+        direction: 1
+    }
+    axios
+        .put(
+            `${BASE_URL}/posts/${id}/vote`,
+            body,
+            {
+                headers: {
+                    "Authorization": `${token}`
+                }
+            }
+        )
+        .then((res) => {
+            alert("voto computado")
+        })
+        .catch((err) => {
+            alert("erro ao votar mais!")
+            console.log(err.message)
+            console.log(err)
+        })
+};
+
+const votePostMenos = (id) => {
+    const body = {
+        direction: 0
+    }
+    axios
+        .put(
+            `${BASE_URL}/posts/${id}/vote`,
+            body,
+            {
+                headers: {
+                    "Authorization": `${token}`
+                }
+            }
+        )
+        .then((res) => {
+            alert("voto computado")
+        })
+        .catch((err) => {
+            alert("erro ao votar menos!")
+            console.log(err.message)
+            console.log(id)
+        })
+};
+
     return (
         <>
             <StyleCardPost>
                  <div>
-                    <button>↑</button>
+                    <button onClick={() => votePostMais(props.post.id)}>↑</button>
                     <div>{props.post.votesCount}</div>
-                    <button>↓</button>
+                    <button onClick={() => votePostMenos(props.post.id)}>↓</button>
                 </div>
-                {props.post.username} disse:
-                <br />
-                {props.post.title}
-                <br />
-                {props.post.text}
-                <br />
+
+                <div>
+                    <h4>{props.post.username} disse:</h4> 
+                    <br />
+                    <h3>{props.post.title}</h3>
+                    <br />
+                    {props.post.text}
+                    <br />
+                </div>
+                    
                 <div> 
                     Comentários: {props.post.commentsCount} 
-                    <button>Comentar</button>
+                    <button onClick={handleGoToPostDetail}>Comentar</button>
                 </div>
             </StyleCardPost>
         </>

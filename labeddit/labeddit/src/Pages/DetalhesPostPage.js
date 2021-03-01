@@ -6,6 +6,7 @@ import GlobalStateContext from '../Global/GlobalStateContext.js';
 import { useParams } from "react-router-dom";
 import { useProtectedPage } from '../hooks/useProtectedPage'
 import styled from 'styled-components';
+import CardPost from '../Components/CardPost/CardPost.js'
 
 const DetalhesPostPage = () => {
 
@@ -14,9 +15,10 @@ const DetalhesPostPage = () => {
     const token = localStorage.getItem("token");
 
     const [selectedPost, setSelectedPost] = useState({});
-    const [posts, setPosts] = useState([])
-    // const { posts } = useContext(GlobalStateContext)
-    const { id } = useParams();
+    const [posts, setPosts] = useState([]);
+    const [postDetails, setPostDetails] = useState(null);
+    const params = useParams();
+    console.log(params.id)
 
     const StyleCardDetails = styled.div`
         border: solid 1px black;
@@ -27,10 +29,10 @@ const DetalhesPostPage = () => {
     `
     
 
-    const getPostsDetalhes = (id) => {
+    const getPostsDetalhes = () => {
         axios
             .get(
-                `${BASE_URL}/posts/${id}`,
+                `${BASE_URL}/posts/${params.id}`,
                 {
                     headers: {
                     'Authorization': `${token}` 
@@ -39,30 +41,31 @@ const DetalhesPostPage = () => {
                 )
             .then((response) => {
                 setSelectedPost(response.data.post)
-                console.log("setSelectedPost rodou")
-                console.log(selectedPost.userVoteDirection)
+                setPostDetails(true)
             })
             .catch((error) => {
                 console.log(error.message)
-                alert("Erro!")
+                alert("Erro ao get detalhes!")
             })
     }
+
+    useEffect(() => {
+        if (localStorage.getItem("token") === null) {
+            history.push('/login')
+        } else if(!params.id) {
+            history.push('/feed')
+        }
+    }, []);
 
     useEffect(() => {
         getPostsDetalhes();
     }, [setSelectedPost])
 
     return (
-        <StyleCardDetails>
-            {selectedPost?.post?.map((item) => {
-                return (
-                    <div key={item?.id}>
-                        {console.log(item.id)}
-                        <p>{item?.id}</p>
-                    </div>
-                )
-            })}
-        </StyleCardDetails>
+        <div>
+            {postDetails && <CardPost post={selectedPost}/>}
+            {/* lista de comentarios */}
+        </div>
     )
 }
 

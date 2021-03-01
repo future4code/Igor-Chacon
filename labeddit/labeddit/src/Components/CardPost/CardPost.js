@@ -91,8 +91,9 @@ const votePostMenos = (id) => {
                 </div>
                     
                 <div> 
-                    Comentários: {props.post.commentsCount} 
-                    <button onClick={handleGoToPostDetail}>Comentar</button>
+                    Comentários: {props.post.commentsCount}
+                    {!props.hideComment && <button onClick={handleGoToPostDetail}>Comentar</button>}
+                    
                 </div>
             </StyleCardPost>
         </>

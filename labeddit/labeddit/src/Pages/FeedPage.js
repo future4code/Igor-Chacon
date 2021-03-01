@@ -16,6 +16,7 @@ const FeedPage = () => {
 
     const history = useHistory();
     useProtectedPage();
+    
 
     const token = localStorage.getItem("token");
 
@@ -109,7 +110,7 @@ const FeedPage = () => {
     return (
         <div>
             
-            <button onClick={() => goToLoginPage(history)}>Sair</button>
+            <button onClick={() => goToLoginPage(history)} onClick={() => localStorage.setItem("token", '')}>Sair</button>
             <StyleCardNewPost>
                 Nova mensagem:
                 <CardNewPost />
@@ -121,7 +122,7 @@ const FeedPage = () => {
 
             {posts.map((post) => {
                 return (
-                    <CardPost post={post}/>
+                    <CardPost key={post.id} post={post}/>
                 )
             })}
         </div>

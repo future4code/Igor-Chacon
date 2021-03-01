@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../Constants/urls.js'
 import { useHistory } from "react-router-dom";
-import GlobalStateContext from '../Global/GlobalStateContext.js';
 import { useParams } from "react-router-dom";
 import { useProtectedPage } from '../hooks/useProtectedPage'
 import styled from 'styled-components';
 import CardPost from '../Components/CardPost/CardPost.js'
+import { goBack } from '../Routers/Conductor';
+import CommentListItem from '../Components/CommentListItem/CommentListItem.js'
 
 const DetalhesPostPage = () => {
 
@@ -15,7 +16,7 @@ const DetalhesPostPage = () => {
     const token = localStorage.getItem("token");
 
     const [selectedPost, setSelectedPost] = useState({});
-    const [posts, setPosts] = useState([]);
+    const [newComment, setNewComment] = useState('');
     const [postDetails, setPostDetails] = useState(null);
     const params = useParams();
     console.log(params.id)
@@ -61,10 +62,55 @@ const DetalhesPostPage = () => {
         getPostsDetalhes();
     }, [setSelectedPost])
 
+    const handleUpdateComment = (e) => {
+        setNewComment(e.target.value)
+    }
+
+    const handleCreateComment = async () => {
+        const axiosConfig = {
+            headers: {
+                Authorization: token
+            }
+        }
+
+        const body = {
+            text: newComment
+        }
+        try { 
+        await axios
+            .post(
+                `${BASE_URL}/posts/${params.id}/comment`, body, axiosConfig
+            )
+
+            setNewComment('');
+            getPostsDetalhes();
+        } catch (error) {
+            alert('não foi possível comentar');
+            console.log(error);
+        }
+    }
     return (
         <div>
-            {postDetails && <CardPost post={selectedPost}/>}
-            {/* lista de comentarios */}
+            <button onClick={() => goBack(history)}>Voltar</button>
+            {postDetails && <CardPost post={selectedPost} hideComment />}
+            <div>
+                <input 
+                    placeholder={'seu comentário'}
+                    value={newComment}
+                    onChange={handleUpdateComment}
+                />
+                <button onClick={handleCreateComment}>Enviar Comentário</button>
+            </div>
+            
+            <StyleCardDetails>
+                <h2>Comentários:</h2>
+                {postDetails && selectedPost.comments.map((comment) => {
+                    return (
+                        <CommentListItem comment={comment}/>
+                    )
+                })}
+            </StyleCardDetails>
+            
         </div>
     )
 }

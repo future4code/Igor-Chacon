@@ -4,6 +4,7 @@ import cors from 'cors';
 
 //extra: importando configuração de rede do node
 import { AddressInfo } from "net";
+import { userInfo } from 'node:os';
 //iniciando a aplicação web com express
 const app = express();
 
@@ -193,11 +194,30 @@ app.patch('/users/realterar/:id', (req: Request, res: Response) => {
     let id = Number(req.params.id);
     let body = req.body;
 
-    for (let b in body) {
-        console.log(b);
-        console.log(body[b]);
+    const user = users.filter((us) => {
+        return us.id === id
+    });
+
+    user[0].name = req.body.name + "-REALTERADO"
+
+    res.status(201).send("Send patch!");
+})
+
+app.delete('users/:id', (res: Response, req: Request) => {
+    const id = Number(req.params.id);
+    try {
+        const myUsers = users;
+
+        const userIndex = myUsers.findIndex((us) => {
+            return us.id === id;
+        })
+        
+        users.splice(userIndex, 1);
+        res.status(200).send("USUÁRIO APAGADO COM SUCESSO");
+    } catch (error) {
+        res.status(400).send({ status: "FAILED", message: error.message });
     }
-    res.status(201).send("Send!");
+    
 })
 
 const server = app.listen(process.env.PORT || 3003, () => {

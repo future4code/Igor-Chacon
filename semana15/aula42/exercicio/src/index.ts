@@ -119,43 +119,39 @@ app.delete("/countries/:id", (req: Request, res: Response) => {
 });
 
 app.put('/countries/edit/:id', (req: Request, res: Response) => {
-    const myCountries = countries;
-    let errorCode: number = 400;
-    const id: number = Number(req.params.id);
+    let errorCode: number = 400
+   //inicio de um sonho
+   try {
 
-    const country = countries.find((ct) => {
-        return ct.id === id;
-    });
 
-    if (isNaN(id)) {
-        throw new Error("Invalid id type. Please send a number");
-    }
+      const countryIndex: number = countries.findIndex(
+         (country) => country.id === Number(req.params.id)
+      )
 
-    if (id > myCountries.length) {
-        throw new Error("Country not found");
-    }
+      if (countryIndex === -1) {
+         errorCode = 404
+         throw new Error()
+      }
 
-    const countryIndex = myCountries.findIndex((ct) => {
-        return ct.id === id;
-    });
+      if(!req.body.name && !req.body.capital){
+         console.log(req.query.name, req.body.capital);
+         throw new Error("Invalid Parameters");
+      }
 
-    if (countryIndex < 0) {
-        errorCode = 404;
-        throw new Error("Country not found");
-    }
+      if(req.body.name){
+         countries[countryIndex].name = req.body.name;
+      };
+      if(req.query.capital){
+         countries[countryIndex].capital = req.body.capital;
+      }
 
-    if (countryIndex < 0) {
-        errorCode = 404;
-        throw new Error("Country not found");
-    }
-    console.log(countryIndex);
-    const result = {
-        name: country?.name,
-        capital: country?.capital
-    }
-    
-    res.status(200).send(result)
-
+      //deu tudo certo
+      res.status(200).send('Country successfully updated')
+   } catch (error) {
+      //deu tudo errado
+      console.log(error)
+      res.status(errorCode).send(error.message)
+   }
 })
 
 app.listen(3003, () => {

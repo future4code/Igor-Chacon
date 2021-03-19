@@ -203,7 +203,7 @@ app.patch('/users/realterar/:id', (req: Request, res: Response) => {
     res.status(201).send("Send patch!");
 })
 
-app.delete('users/:id', (res: Response, req: Request) => {
+app.delete('/users/:id', (res: Response, req: Request) => {
     const id = Number(req.params.id);
     try {
         const myUsers = users;

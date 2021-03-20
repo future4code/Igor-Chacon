@@ -33,7 +33,7 @@ type User = {
 let users: User[] = [
     {
         name: "Igor",
-        cpf: "08291294488",
+        cpf: "082.912.944-88",
         bornDate: "17/06/1989",
         saldo: 0,
         extrato: [
@@ -105,19 +105,30 @@ app.put('/createUser', (req: Request, res: Response) => {
             return Math.abs(idade.getUTCFullYear() - 1970);
         }
 
-        let dateBorn = reqBody.bornDate
+        const getAllCpf = () => {
+            for (let i = 0; i < users.length; i++) {
+                let cpfs = users[i].cpf
+                if (cpfs === reqBody.cpf) {
+                    errorCode = 422;
+                    throw new Error("CPF is already in use.");
+                }
+            }
+        }
 
-        let age: number = calcularIdade(dateBorn)
+        getAllCpf()
+
+        let age: number = calcularIdade(reqBody.bornDate)
 
          if (age < 18) {
              errorCode = 422;
-             throw new Error("User must be 18 years older or more.")
+             throw new Error("User must be 18 years older or more.");
          }
 
          users.push(reqBody);
-         res.status(201).send({message: "User created sucessfully!"})
+         res.status(201).send({message: `User created sucessfully. CPF: ${reqBody.cpf}`!})
 
     } catch (error) {
         res.status(errorCode).send({message: error.message});
     }
 })
+

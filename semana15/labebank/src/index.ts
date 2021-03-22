@@ -30,6 +30,12 @@ type User = {
     ]
 }
 
+type Transacoes = {
+    valor: number,
+    data: number,
+    descricao: string
+}
+
 let users: User[] = [
     {
         name: "Igor",
@@ -105,9 +111,9 @@ app.put('/createUser', (req: Request, res: Response) => {
             return Math.abs(idade.getUTCFullYear() - 1970);
         }
 
-        const getAllCpf = () => {
-            for (let i = 0; i < users.length; i++) {
-                let cpfs = users[i].cpf
+        const verifyCpf = () => {
+            for (let user of users) {
+                let cpfs = user.cpf
                 if (cpfs === reqBody.cpf) {
                     errorCode = 422;
                     throw new Error("CPF is already in use.");
@@ -115,7 +121,7 @@ app.put('/createUser', (req: Request, res: Response) => {
             }
         }
 
-        getAllCpf()
+        verifyCpf()
 
         let age: number = calcularIdade(reqBody.bornDate)
 
@@ -132,3 +138,17 @@ app.put('/createUser', (req: Request, res: Response) => {
     }
 })
 
+app.get('/getSaldo',  (req: Request, res: Response) => {
+    const reqBody = {
+        name: req.body.name,
+        cpf: req.body.cpf
+    }
+
+    let usuario = users.filter((us) => {
+        return us.name === req.body.name && us.cpf === req.body.cpf
+    })
+    const user = usuario[0]
+    console.log(user);
+    
+    res.status(201).send({message: `User saldo: ${user.saldo}`!})
+})

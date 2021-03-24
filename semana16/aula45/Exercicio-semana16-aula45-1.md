@@ -69,3 +69,33 @@
 -- e)
 -- SELECT AVG(salary), gender FROM Actor group by gender;
 
+-- 6
+-- a)
+-- ALTER TABLE Movie ADD playing_limit_date DATE;
+
+-- b)
+-- ALTER TABLE Movie CHANGE rating rating FLOAT;
+
+-- c)
+-- UPDATE Movie SET playing_limit_date = "2020-12-31" WHERE id = "001";
+
+-- d)
+-- DELETE FROM Movie WHERE id = "001";
+-- se tenta atualizar (UPDATE movie SET sinopse = "bananinha" WHERE id = "001";) dá mensagem de sucesso, porém, nada foi alterado.
+
+-- 7
+-- a) 3 filmes
+-- b) 9,3333333
+-- c) 0
+-- d) 0
+-- e) 10
+-- f) 8
+
+
+-- 8
+-- a) SELECT * FROM Movie ORDER BY name;
+-- b) SELECT * FROM Movie ORDER BY name LIMIT 5;
+-- c) SELECT * FROM Movie WHERE release_date < CURDATE() ORDER BY release_date DESC LIMIT 3;
+-- d) SELECT * FROM Movie ORDER BY rating DESC LIMIT 3;
+
+

@@ -79,3 +79,30 @@ VALUES (
 -- Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails (`epps-igor-chacon`.`MovieCast`, CONSTRAINT `MovieCast_ibfk_2` FOREIGN KEY (`actor_id`) REFERENCES `Actor` (`id`))
 -- não é possível deletar pois há uma correspondência por chave estrangeira
 
+-- 3
+-- a)
+SELECT * FROM Movie 
+INNER JOIN Rating ON Movie.id = Rating.movie_id;
+-- a query pega os os filmes que tem atores relacionados a ela (que tem chave estrangeira atrelada) e os mostra, agrupando por filme. o ON diz em que tabela e com que parâmetro (no caso id) deve ser feita a relação.
+
+-- b)
+SELECT m.id as movie_id, r.rate as rating FROM Movie m
+INNER JOIN Rating r ON m.id = r.movie_id;
+
+-- 4
+-- a)
+SELECT m.id as movie_id, m.title, r.rate as rating, r.comment as rating_comment
+FROM Movie m
+LEFT JOIN Rating r ON m.id = r.movie_id;
+
+-- b)
+SELECT m.id as movie_id, m.title, mc.actor_id FROM Movie m
+RIGHT JOIN MovieCast mc ON mc.movie_id = m.id;
+
+-- c)
+SELECT AVG(r.rate), m.id, m.title FROM Movie m
+LEFT JOIN Rating r ON m.id = r.movie_id
+GROUP BY (m.id);
+
+-- 5
+

@@ -7,6 +7,7 @@ import editUser from "./endpoints/editUser";
 import createTask from "./endpoints/createTask";
 import getTaskById from "./endpoints/getTaskById";
 import getAllUsers from "./endpoints/getAllUsers";
+import getTaskByUserId from "./endpoints/getTaskByUserId";
 
 const app = express();
 dotenv.config();
@@ -31,6 +32,8 @@ app.post('/user/edit/:id', editUser);
 
 app.put('/task', createTask);
 app.get('/task/:id', getTaskById);
+
+app.get('/tasks/:id', getTaskByUserId);
 
 
 app.get('/', async (req, res) => {

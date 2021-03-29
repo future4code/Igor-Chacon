@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { getAllUsers } from "./endpoints/getAllUsers";
 import { getUsersByName } from "./endpoints/getUsersByName";
 import { getAllUsersOrdered } from "./endpoints/getAllUsersOrdered";
+import { getFiveUsers } from "./endpoints/getFiveUsers";
 
 const app = express();
 dotenv.config();
@@ -23,6 +24,7 @@ export const connection = knex({
 app.get('/user/order?', getAllUsersOrdered);
 app.get('/users', getAllUsers);
 app.get('/user/:name', getUsersByName);
+app.get('/users/:page', getFiveUsers)
 
 
 

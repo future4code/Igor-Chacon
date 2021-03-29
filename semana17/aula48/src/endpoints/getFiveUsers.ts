@@ -1,13 +1,14 @@
-import selectUserByName from "../data/selectUserByName"
 import { Response, Request } from "express";
+import selectFiveUsers from "../data/selectFiveUsers";
 
-export const getUsersByName = async(req: Request,res: Response): Promise<void> =>{
+export const getFiveUsers = async(req: Request,res: Response): Promise<void> =>{
     try {
-       const users = await selectUserByName(req.params.name)
+       const page = req.params.page
+       const users = await selectFiveUsers(page);
  
        if(!users.length){
           res.statusCode = 404
-          throw new Error("No users found")
+          throw new Error("No users found");
        }
  
        res.status(200).send(users)

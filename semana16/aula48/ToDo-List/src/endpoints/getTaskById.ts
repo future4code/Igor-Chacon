@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import moment from 'moment';
-import selectTaskById from "../data/selectTaskById"
+import selectTaskById from "../data/selectTaskById";
 
 export default async function getTaskById(
     req: Request,

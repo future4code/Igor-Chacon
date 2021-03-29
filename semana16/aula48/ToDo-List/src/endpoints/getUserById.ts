@@ -7,10 +7,10 @@ export default async function getUserById(
 ) {
     try {
         const user = await selectUserById(req.params.id);
-
+        
         if (!user) {
             res.status(404).send({
-                message: "User not found"
+                message: "User not found!"
             })
         }
 

@@ -6,6 +6,7 @@ import getUserById from "./endpoints/getUserById";
 import editUser from "./endpoints/editUser";
 import createTask from "./endpoints/createTask";
 import getTaskById from "./endpoints/getTaskById";
+import getAllUsers from "./endpoints/getAllUsers";
 
 const app = express();
 dotenv.config();
@@ -22,9 +23,11 @@ export const connection = knex({
     }
 });
 
+app.get('/user/all', getAllUsers);
 app.put('/user', createUser);
 app.get('/user/:id', getUserById);
 app.post('/user/edit/:id', editUser);
+
 
 app.put('/task', createTask);
 app.get('/task/:id', getTaskById);

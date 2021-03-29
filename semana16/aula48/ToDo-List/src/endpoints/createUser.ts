@@ -26,7 +26,7 @@ export default async function createUser(
             req.body.email
         );
 
-        res.status(200).send("User created!");
+        res.status(200).send({message: `Usuário criado com id: ${id}`});
         
         
     } catch (error) {

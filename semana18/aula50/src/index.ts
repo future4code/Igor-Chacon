@@ -2,22 +2,28 @@ import knex from "knex";
 import dotenv from "dotenv";
 import express from "express";
 import { AddressInfo } from "net";
+import { PostUsers } from "./endpoints/PostUsers";
+import { getAllUsers } from "./endpoints/getAllUsers";
 
 const app = express();
-
-app.use(express.json());
 dotenv.config();
+app.use(express.json());
 
-const connection = knex({
+
+export const connection = knex({
   client: "mysql",
   connection: {
     host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT || "3306"),
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    port: 3306
   },
 });
+
+app.post('/user/create', PostUsers);
+app.get('/users', getAllUsers);
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {

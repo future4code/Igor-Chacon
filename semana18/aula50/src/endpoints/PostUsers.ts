@@ -23,6 +23,7 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
         const id: string = generateId();
 
         createUser(id, name, password);
+        res.send("Usuário criado!");
 
     } catch (error) {
         console.log(error)

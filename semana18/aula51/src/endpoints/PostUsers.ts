@@ -4,17 +4,23 @@ import { generateId } from "../services/idGenerator"
 import createUser from "../data/createUser";
 import { generateToken } from "../services/authenticator";
 import { hash } from "../services/generateHash";
+import { userRole } from "../services/types";
 
 export const PostUsers = async (req: Request, res: Response): Promise<void> => {
     try {
         const { 
-            name, email, password
+            name, email, password, role
         } = req.body;
 
-        if (!name || !password) {
+        if (!name || !password || !role) {
             res.statusCode = 422;
-            throw new Error("Name, email and password is required");
+            throw new Error("Name, email, role and password is required");
         };
+
+        if (role !== userRole.ADMIN && role !== userRole.NORMAL) {
+            res.statusCode = 422;
+            throw new Error("Role not allowed. Please check for admin or normal");
+        }
 
         const [user] = await connection('aula50').where({ name });
         if (user) {
@@ -34,17 +40,9 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
             throw new Error("Invalid e-mail.");
         }
 
-        // const userPassword = req.body.password;
-        // const passwordSize = userPassword.length()
-        // console.log(`tamanho do password ${passwordSize}`)
-        // if (passwordSize <= 6) {
-        //     res.statusCode = 500;
-        //     throw new Error("Invalid Password (too short).");
-        // }
         const id: string = generateId()
-        const token: string = generateToken({ id });
-        const newUser = {id, name, email, cypherText}
-        createUser(id, name, email, cypherText);
+        const token: string = generateToken({ id, role });
+        createUser(id, name, email, cypherText, role);
         res.send({token});
 
     } catch (error) {

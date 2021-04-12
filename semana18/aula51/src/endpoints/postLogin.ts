@@ -28,7 +28,7 @@ export const postLogin = async (req: Request,res: Response): Promise<void>=> {
         };
 
 
-        const token = generateToken({ id: user.id });
+        const token = generateToken({ id: user.id, role: user.role });
 
         res.status(200).send({token});
 

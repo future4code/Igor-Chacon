@@ -18,9 +18,9 @@ export const getTokenData = (
     token: string
 ): AuthenticationData => {
     try {
-        const { id } = jwt.verify(token, process.env.JWT_KEY!) as AuthenticationData;
+        const { id, role } = jwt.verify(token, process.env.JWT_KEY!) as AuthenticationData;
 
-        return { id };
+        return { id, role };
     } catch (error) {
         console.log(error);
         return error;

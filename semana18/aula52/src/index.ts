@@ -34,9 +34,6 @@ app.get('/useres/profile', getLogedUser);
 app.delete('/user/:id', deleteUserAdm);
 
 
-  getAddressInfo("05424150").then(console.log)
-
-
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {

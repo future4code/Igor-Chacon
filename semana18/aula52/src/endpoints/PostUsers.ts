@@ -5,11 +5,13 @@ import createUser from "../data/createUser";
 import { generateToken } from "../services/authenticator";
 import { hash } from "../services/generateHash";
 import { userRole } from "../services/types";
+import getAddressInfo from "../services/getAddressInfo";
+import createUserAddress from "../data/createUserAddress";
 
 export const PostUsers = async (req: Request, res: Response): Promise<void> => {
     try {
         const { 
-            name, email, password, role
+            name, email, password, role, cep, complemento, numero
         } = req.body;
 
         if (!name || !password || !role) {
@@ -30,7 +32,6 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
 
         // emcription
         const cypherText = await hash(password);
-        console.log("senha hasheada: ", cypherText);
         
         
 
@@ -43,6 +44,16 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
         const id: string = generateId()
         const token: string = generateToken({ id, role });
         createUser(id, name, email, cypherText, role);
+
+        const address = await getAddressInfo(cep);
+
+        const logradouro: string = address.street;
+        const bairro: string = address.neighbourhood;
+        const cidade: string = address.city;
+        const uf: string = address.state
+
+        createUserAddress(cep, complemento, numero);
+
         res.send({token});
 
     } catch (error) {

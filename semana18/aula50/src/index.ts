@@ -4,6 +4,7 @@ import express from "express";
 import { AddressInfo } from "net";
 import { PostUsers } from "./endpoints/PostUsers";
 import { getAllUsers } from "./endpoints/getAllUsers";
+import { getUser } from "./endpoints/getUser";
 
 const app = express();
 dotenv.config();
@@ -23,6 +24,7 @@ export const connection = knex({
 
 app.post('/user/create', PostUsers);
 app.get('/users', getAllUsers);
+app.get('/user/:email', getUser);
 
 
 

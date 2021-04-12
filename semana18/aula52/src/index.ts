@@ -8,6 +8,7 @@ import { getUser } from "./endpoints/getUser";
 import { postLogin } from "./endpoints/postLogin";
 import { getLogedUser } from "./endpoints/getLogedUser";
 import { deleteUserAdm } from "./endpoints/deleteUserAdm";
+import  getAddressInfo  from "./services/getAddressInfo";
 
 const app = express();
 dotenv.config();
@@ -31,6 +32,9 @@ app.get('/user/:email', getUser);
 app.post('/user/login', postLogin);
 app.get('/useres/profile', getLogedUser);
 app.delete('/user/:id', deleteUserAdm);
+
+
+  getAddressInfo("05424150").then(console.log)
 
 
 

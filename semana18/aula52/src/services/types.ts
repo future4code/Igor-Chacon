@@ -9,3 +9,10 @@ export enum userRole {
 }
 
 export type user = { id: string, name: string, email: string, cypherText: string, role: string }
+
+export type addressInfo = {
+    street: string,
+    neighbourhood: string,
+    city: string,
+    state: string
+}

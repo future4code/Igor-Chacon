@@ -73,3 +73,19 @@ const generateToken = (id: string): string => {
 -- criará o token como uma string, para que não seja criada como numbertad
 
 -- b. Agora, crie a função que gere o token. Além disso, crie um type  para representar o input dessa função.
+
+-- 7
+const expiresIn = "1min";
+
+const getData = (token: string): AuthenticationData => {
+  const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
+  const result = {
+    id: payload.id,
+  };
+  return result;
+};
+-- 
+-- a. O que a linha as any faz? Por que precisamos usá-la ali?
+-- promete que a constante será de qualquer type e será aceito assim, evitando erros.
+
+-- b. Crie uma função que realize a mesma funcionalidade da função acima

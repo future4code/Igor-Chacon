@@ -7,7 +7,7 @@ import { getAllUsers } from "./endpoints/getAllUsers";
 import { getUser } from "./endpoints/getUser";
 import { postLogin } from "./endpoints/postLogin";
 import { getLogedUser } from "./endpoints/getLogedUser";
-import { compare, hash } from "./services/generateHash";
+import { deleteUserAdm } from "./endpoints/deleteUserAdm";
 
 const app = express();
 dotenv.config();
@@ -30,7 +30,7 @@ app.get('/users', getAllUsers);
 app.get('/user/:email', getUser);
 app.post('/user/login', postLogin);
 app.get('/useres/profile', getLogedUser);
-
+app.delete('/user/:id', deleteUserAdm);
 
 
 

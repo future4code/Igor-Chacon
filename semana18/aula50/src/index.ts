@@ -6,6 +6,7 @@ import { PostUsers } from "./endpoints/PostUsers";
 import { getAllUsers } from "./endpoints/getAllUsers";
 import { getUser } from "./endpoints/getUser";
 import { postLogin } from "./endpoints/postLogin";
+import { getLogedUser } from "./endpoints/getLogedUser";
 
 const app = express();
 dotenv.config();
@@ -27,6 +28,7 @@ app.post('/user/create', PostUsers);
 app.get('/users', getAllUsers);
 app.get('/user/:email', getUser);
 app.post('/user/login', postLogin);
+app.get('/useres/profile', getLogedUser);
 
 
 

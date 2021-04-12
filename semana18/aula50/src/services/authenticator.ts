@@ -16,14 +16,14 @@ export const generateToken = (input: AuthenticationData): string => {
 
 export const getTokenData = (
     token: string
-): AuthenticationData | null => {
+): AuthenticationData => {
     try {
         const { id } = jwt.verify(token, process.env.JWT_KEY!) as AuthenticationData;
 
         return { id };
     } catch (error) {
         console.log(error);
-        return null;        
+        return error;
     }
 
     

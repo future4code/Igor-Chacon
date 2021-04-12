@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
 import selectUser from "../data/selectUser";
 import { generateToken } from "../services/authenticator";
+import { compare } from "../services/generateHash";
 
 export const postLogin = async (req: Request,res: Response): Promise<void>=> {
     try {
@@ -15,9 +16,17 @@ export const postLogin = async (req: Request,res: Response): Promise<void>=> {
         
         const user = await selectUser(userData.email);
         
-        if (user?.password !== userData.password) {
-            throw new Error("Invalid Password");
+        if (!user) {
+            res.statusCode = 401;
+            throw new Error("Invalid user");
         };
+
+        const hashCompare = await compare(userData.password, user.password);
+        if (!hashCompare) {
+            res.statusCode = 401;
+            throw new Error("Credenciais inválidas!");
+        };
+
 
         const token = generateToken({ id: user.id });
 

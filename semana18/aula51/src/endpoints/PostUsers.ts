@@ -3,6 +3,7 @@ import {connection} from "../";
 import { generateId } from "../services/idGenerator"
 import createUser from "../data/createUser";
 import { generateToken } from "../services/authenticator";
+import { hash } from "../services/generateHash";
 
 export const PostUsers = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -21,6 +22,12 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
             throw new Error("User already exists");
         };
 
+        // emcription
+        const cypherText = await hash(password);
+        console.log("senha hasheada: ", cypherText);
+        
+        
+
         const userEmail = req.body.email;
         if (userEmail?.search("@") === -1) {
             res.statusCode = 422;
@@ -36,9 +43,9 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
         // }
         const id: string = generateId()
         const token: string = generateToken({ id });
-        const newUser = {id, name, email, password}
-        createUser(id, name, email, password);
-        res.send({newUser, token});
+        const newUser = {id, name, email, cypherText}
+        createUser(id, name, email, cypherText);
+        res.send({token});
 
     } catch (error) {
         console.log(error)

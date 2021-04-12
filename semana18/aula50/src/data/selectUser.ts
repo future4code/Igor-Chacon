@@ -1,13 +1,14 @@
 import { connection } from "..";
 
+const aula50 = "aula50";
+
 export default async function selectUser(
     email: string
 ):Promise<any> {
-    const result = await connection.raw(`
-       SELECT email, password
-       FROM aula50
-       WHERE email = '${email}';
-    `)
+    const result = await connection
+        .select("*")
+        .from(aula50)
+        .where({ email });
  
     return result[0];
- }
+ };

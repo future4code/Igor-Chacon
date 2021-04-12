@@ -1,7 +1,7 @@
 import selectUser from "../data/selectUser"
 import { Response, Request } from "express";
 
-export const getUser = async(req: Request,res: Response): Promise<void> =>{
+export const getUser = async(req: Request, res: Response): Promise<void> =>{
     try {
        const users = await selectUser(req.params.email)
  

@@ -4,7 +4,7 @@ import { AuthenticationData } from './types';
 
 dotenv.config();
 
-const expiresIn = "1min";
+const expiresIn = "100min";
  
 export const generateToken = (input: AuthenticationData): string => {
     return jwt.sign(

@@ -1,10 +1,17 @@
 import { Response, Request } from 'express';
+import connection from '../../connection';
+import { recipesTableName } from '../../types';
 
 export default async function getRecipeById(
     req: Request, 
     res: Response
 ): Promise<void> {
     try {
+
+        const [recipe] = await connection(recipesTableName)
+            .where({ id: req.params.id });
+
+        res.send({recipe});
 
     } catch (error) {
         console.log(error.message);

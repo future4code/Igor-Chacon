@@ -8,7 +8,13 @@ export enum userRole {
     NORMAL = 'normal'
 }
 
-export type user = { id: string, name: string, email: string, cypherText: string, role: string }
+export type user = { 
+    id: string, 
+    name: string, 
+    email: string, 
+    cypherText: string, 
+    role: string 
+}
 
 export type addressInfo = {
     street: string,

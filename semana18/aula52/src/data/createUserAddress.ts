@@ -1,6 +1,6 @@
 import {connection}  from '../';
 
-const aula50Table = "aula50"
+const aula50TableEnderecos = "aula52_enderecos";
 
 export default async function createUserAddress(
     cep: string,
@@ -21,5 +21,5 @@ export default async function createUserAddress(
             cidade,
             uf
         })
-        .into(aula50Table)
+        .into(aula50TableEnderecos)
 };

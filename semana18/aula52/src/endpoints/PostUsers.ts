@@ -46,10 +46,25 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
         
         createUser(id, name, email, cypherText, role);
 
-        const {street: logradouro, neighbourhood: bairro, city: localidade, state: uf} = await getAddressInfo(cep);
-        console.log(logradouro, bairro, localidade, uf);
-        
-        createUserAddress(cep, logradouro, numero, complemento, bairro, localidade, uf);
+        const {
+            street: logradouro, 
+            neighbourhood: bairro, 
+            city: cidade, 
+            state: estado
+        }: any | null = await getAddressInfo(cep);
+
+        const userAddress = {
+            cep, 
+            logradouro, 
+            numero, 
+            complemento, 
+            bairro, 
+            cidade, 
+            estado
+        };
+
+        await connection("aula52_enderecos").insert(userAddress)
+        // createUserAddress(cep, logradouro, numero, complemento, bairro, localidade, uf);
 
         res.send({token});
 

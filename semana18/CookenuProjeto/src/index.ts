@@ -1,5 +1,12 @@
 import app from './app';
-import { generateToken, getTokenData } from './services/authenticator';
+import login from './endpoints/users/login';
+import signup from './endpoints/users/signup';
 
 
-app.get('/');
+app.post('/users/signup', signup);
+app.post('/users/login', login);
+app.get('/users/profile');
+app.get('/users/:id/profile');
+
+app.post('/recipe');
+app.post('/recipe/:id');

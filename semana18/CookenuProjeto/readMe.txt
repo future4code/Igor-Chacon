@@ -1,5 +1,7 @@
 Esse produto nada mais é do que uma rede social, na qual os usuários podem dividir informações relevantes sobre comidas e receitas que tenham experimentado. Ela possui todas as funcionalidades mais comuns em redes sociais:
 
+// para clinar tabelas:
+npm run migrations 
 
 ESTRUTURA DE DADOS
 

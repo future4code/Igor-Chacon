@@ -1,5 +1,4 @@
 import {connection}  from '../';
-import getAddressInfo from '../services/getAddressInfo';
 
 const aula50Table = "aula50"
 
@@ -10,7 +9,7 @@ export default async function createUserAddress(
     complemento: string,
     bairro: string,
     cidade: string,
-    estado: string
+    uf: string
 ) {
     await connection
         .insert({ 
@@ -20,7 +19,7 @@ export default async function createUserAddress(
             complemento,
             bairro,
             cidade,
-            estado
+            uf
         })
         .into(aula50Table)
 };

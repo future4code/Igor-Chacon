@@ -43,16 +43,13 @@ export const PostUsers = async (req: Request, res: Response): Promise<void> => {
 
         const id: string = generateId()
         const token: string = generateToken({ id, role });
+        
         createUser(id, name, email, cypherText, role);
 
-        const address = await getAddressInfo(cep);
-
-        const logradouro: string = address.street;
-        const bairro: string = address.neighbourhood;
-        const cidade: string = address.city;
-        const uf: string = address.state
-
-        createUserAddress(cep, complemento, numero);
+        const {street: logradouro, neighbourhood: bairro, city: localidade, state: uf} = await getAddressInfo(cep);
+        console.log(logradouro, bairro, localidade, uf);
+        
+        createUserAddress(cep, logradouro, numero, complemento, bairro, localidade, uf);
 
         res.send({token});
 

@@ -11,14 +11,20 @@ export default async function login(
     try {
         const { email, password } = req.body;
 
+        if (!email || !password) {
+            res.statusCode = 422;
+            throw new Error('"email" or "password" is required');
+        };
+
+
         const [user] = await connection(userTableName)
             .where({ email })
 
-        const passwordIsCorrect: boolean = compareHash(password, user.password);
+        const passwordIsCorrect: boolean = compareHash(password, user?.password || '');
 
         if (!passwordIsCorrect) {
             res.statusCode = 401;
-            throw new Error('Internal Server Error');
+            throw new Error('Invalid credentials');
         };
 
         const token = generateToken({ id: user.id });

@@ -15,6 +15,18 @@ export default async function createRecipe(
 
         const tokenData = getTokenData(token!);
 
+        if (!tokenData) {
+            res.statusCode = 401;
+            throw new Error('Unauthorized');
+        };
+
+        if (!title || !description) {
+            res.statusCode = 401;
+            throw new Error('"title" or "description" is required');
+        };
+
+        
+
         const id = generateId();
 
         const createdAt = new Date();

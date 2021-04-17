@@ -3,7 +3,7 @@ export type authenticationData = {
 }
 
 
-export type user = {
+export type User = {
     id: string,
     name: string,
     email: string,
@@ -12,11 +12,19 @@ export type user = {
 
 export type recipe = {
     id: string,
-    title: string,
+    photo: string,
     description: string,
+    type: string,
     createAt: string,
     authorId: string
 };
 
-export const userTableName = 'cookenu_users';
-export const recipesTableName = 'cookenu_recipes';
+export const usersTableName = 'labook_users';
+export const postsTableName = 'labook_posts';
+
+
+export interface SignupInputDTO {
+    name: string,
+    email: string,
+    password: string
+}

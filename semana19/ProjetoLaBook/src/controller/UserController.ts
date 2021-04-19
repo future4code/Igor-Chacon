@@ -1,13 +1,12 @@
 import { Request, Response } from 'express';
 import { UserBusiness } from '../business/UserBusiness';
-import { SignupInputDTO } from '../types';
+import { LoginInputDTO, SignupInputDTO } from '../types';
 
 export class UserController {
 
     async signup(req: Request, res: Response) {
         try {
             let message = "Success!"
-            const { name, email, password } = req.body;
 
             const input: SignupInputDTO = {
                name: req.body.name,
@@ -26,5 +25,28 @@ export class UserController {
       
             res.send({ message })
          }
+    }
+
+    async login(req: Request, res: Response) {
+      try {
+         let message = "Success!"
+   
+         const { email, password } = req.body
+
+         const input: LoginInputDTO = {
+            email: req.body.email,
+            password: req.body.password
+         }
+   
+         
+   
+         res.status(200).send({ message, token })
+   
+      } catch (error) {
+         let message = error.sqlMessage || error.message
+         res.statusCode = 400
+   
+         res.send({ message })
+      }
     }
 }

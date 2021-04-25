@@ -99,6 +99,32 @@ var UserBusiness = /** @class */ (function () {
             });
         });
     };
+    UserBusiness.prototype.createBand = function (band) {
+        return __awaiter(this, void 0, void 0, function () {
+            var idGenerator, id, userDatabase, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        if (!band.name || !band.music_genre || !band.responsible) {
+                            throw new Error("User name, gender and responsible must be provided");
+                        }
+                        ;
+                        idGenerator = new IdGenerator_1.IdGenerator();
+                        id = idGenerator.generate();
+                        userDatabase = new UserDatabase_1.UserDatabase();
+                        return [4 /*yield*/, userDatabase.createBand(id, band.name, band.music_genre, band.responsible)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, "Band created successfully!"];
+                    case 2:
+                        error_2 = _a.sent();
+                        throw new Error(error_2.sqlMessage || error_2.message);
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return UserBusiness;
 }());
 exports.UserBusiness = UserBusiness;

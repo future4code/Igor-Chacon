@@ -102,6 +102,34 @@ var UserController = /** @class */ (function () {
             });
         });
     };
+    UserController.prototype.signUpBand = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var input, userBusiness, result, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        input = {
+                            name: req.body.name,
+                            music_genre: req.body.gender,
+                            responsible: req.body.responsible
+                        };
+                        userBusiness = new UserBusiness_1.UserBusiness();
+                        return [4 /*yield*/, userBusiness.createBand(input)];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 2:
+                        error_3 = _a.sent();
+                        return [3 /*break*/, 3];
+                    case 3: return [4 /*yield*/, BaseDatabase_1.BaseDatabase.destroyConnection()];
+                    case 4:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return UserController;
 }());
 exports.UserController = UserController;

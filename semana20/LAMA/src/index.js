@@ -10,6 +10,7 @@ dotenv_1.default.config();
 var app = express_1.default();
 app.use(express_1.default.json());
 app.use("/user", userRouter_1.userRouter);
+app.use("/band", userRouter_1.userRouter);
 var server = app.listen(3000, function () {
     if (server) {
         var address = server.address();

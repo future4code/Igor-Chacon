@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRole = exports.User = void 0;
+exports.Band = exports.UserRole = exports.User = void 0;
 var User = /** @class */ (function () {
     function User(id, name, email, password, role) {
         this.id = id;
@@ -60,3 +60,28 @@ var UserRole;
     UserRole["NORMAL"] = "NORMAL";
     UserRole["ADMIN"] = "ADMIN";
 })(UserRole = exports.UserRole || (exports.UserRole = {}));
+var Band = /** @class */ (function () {
+    function Band(id, name, music_genre, responsible) {
+        this.id = id;
+        this.name = name;
+        this.music_genre = music_genre;
+        this.responsible = responsible;
+    }
+    Band.prototype.getBandId = function () {
+        return this.id;
+    };
+    Band.prototype.getName = function () {
+        return this.name;
+    };
+    Band.prototype.getMusic_genre = function () {
+        return this.music_genre;
+    };
+    Band.prototype.getResponsible = function () {
+        return this.responsible;
+    };
+    Band.toUserModel = function (band) {
+        return new Band(band.id, band.name, band.music_genre, band.responsible);
+    };
+    return Band;
+}());
+exports.Band = Band;

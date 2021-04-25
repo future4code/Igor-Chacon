@@ -10,3 +10,4 @@ exports.userRouter = express_1.default.Router();
 var userController = new UserController_1.UserController();
 exports.userRouter.post("/signup", userController.signup);
 exports.userRouter.post("/login", userController.login);
+exports.userRouter.post("/band", userController.signUpBand);

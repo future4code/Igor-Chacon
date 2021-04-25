@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserInputDTO, LoginInputDTO} from "../model/User";
+import { UserInputDTO, LoginInputDTO, BandInputDTO} from "../model/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { BaseDatabase } from "../data/BaseDatabase";
 
@@ -44,6 +44,25 @@ export class UserController {
             res.status(400).send({ error: error.message });
         }
 
+        await BaseDatabase.destroyConnection();
+    }
+
+    async signUpBand(req: Request, res: Response) {
+        try {
+            const input: BandInputDTO = {
+                name:  req.body.name,
+                music_genre:  req.body.gender,
+                responsible:  req.body.responsible
+            };
+
+            const userBusiness = new UserBusiness();
+            const result = await userBusiness.createBand(input);
+
+            res.status(200).send({ result });
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+        
         await BaseDatabase.destroyConnection();
     }
 

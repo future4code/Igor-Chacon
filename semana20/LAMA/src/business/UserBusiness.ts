@@ -1,4 +1,4 @@
-import { UserInputDTO, LoginInputDTO } from "../model/User";
+import { UserInputDTO, LoginInputDTO, BandInputDTO } from "../model/User";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
@@ -47,5 +47,26 @@ export class UserBusiness {
         }
 
         return accessToken;
+    }
+
+    async createBand(band: BandInputDTO) {
+        try {
+            if(!band.name || !band.music_genre || !band.responsible) {
+                throw new Error("User name, gender and responsible must be provided");
+            };
+
+            const idGenerator = new IdGenerator();
+            const id = idGenerator.generate();
+
+            const userDatabase = new UserDatabase();
+            await userDatabase.createBand(id, band.name, band.music_genre, band.responsible);
+
+            const message = "Band created successfully!";
+
+            return console.log(message);
+
+        } catch(error) {
+            throw new Error(error.sqlMessage || error.message);
+        }
     }
 }

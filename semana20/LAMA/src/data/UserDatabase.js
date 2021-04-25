@@ -100,7 +100,50 @@ var UserDatabase = /** @class */ (function (_super) {
             });
         });
     };
+    UserDatabase.prototype.getBandByName = function (name) {
+        return __awaiter(this, void 0, void 0, function () {
+            var result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getConnection()
+                            .select("*")
+                            .from(UserDatabase.TABLE_BAND)
+                            .where({ name: name })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, User_1.Band.toUserModel(result[0])];
+                }
+            });
+        });
+    };
+    UserDatabase.prototype.createBand = function (id, name, music_genre, responsible) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.getConnection()
+                                .insert({
+                                id: id,
+                                name: name,
+                                music_genre: music_genre,
+                                responsible: responsible
+                            })
+                                .into(UserDatabase.TABLE_BAND)];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        throw new Error(error_2.sqlMessage || error_2.message);
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     UserDatabase.TABLE_NAME = "NOME_TABELAS_USUÁRIOS";
+    UserDatabase.TABLE_BAND = "NOME_TABELA_BANDAS";
     return UserDatabase;
 }(BaseDatabase_1.BaseDatabase));
 exports.UserDatabase = UserDatabase;

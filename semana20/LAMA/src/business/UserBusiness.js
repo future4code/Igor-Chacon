@@ -46,10 +46,14 @@ var UserBusiness = /** @class */ (function () {
     }
     UserBusiness.prototype.createUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var idGenerator, id, hashManager, hashPassword, userDatabase, authenticator, accessToken;
+            var idGenerator, id, hashManager, hashPassword, userDatabase, authenticator, accessToken, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        if (!user.name || !user.email || !user.password) {
+                            throw new Error("User name, email and password must be provided");
+                        }
                         idGenerator = new IdGenerator_1.IdGenerator();
                         id = idGenerator.generate();
                         hashManager = new HashManager_1.HashManager();
@@ -63,6 +67,10 @@ var UserBusiness = /** @class */ (function () {
                         authenticator = new Authenticator_1.Authenticator();
                         accessToken = authenticator.generateToken({ id: id, role: user.role });
                         return [2 /*return*/, accessToken];
+                    case 3:
+                        error_1 = _a.sent();
+                        throw new Error(error_1.sqlMessage || error_1.message);
+                    case 4: return [2 /*return*/];
                 }
             });
         });

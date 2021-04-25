@@ -100,7 +100,7 @@ var UserDatabase = /** @class */ (function (_super) {
             });
         });
     };
-    UserDatabase.TABLE_NAME = "";
+    UserDatabase.TABLE_NAME = "NOME_TABELAS_USUÁRIOS";
     return UserDatabase;
 }(BaseDatabase_1.BaseDatabase));
 exports.UserDatabase = UserDatabase;

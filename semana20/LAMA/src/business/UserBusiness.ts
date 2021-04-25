@@ -8,23 +8,27 @@ export class UserBusiness {
 
     async createUser(user: UserInputDTO) {
 
-        if(!user.name || !user.email || !user.password) {
-            throw new Error("User name, email and password must be provided");
-        }
-
-        const idGenerator = new IdGenerator();
-        const id = idGenerator.generate();
-
-        const hashManager = new HashManager();
-        const hashPassword = await hashManager.hash(user.password);
-
-        const userDatabase = new UserDatabase();
-        await userDatabase.createUser(id, user.email, user.name, hashPassword, user.role);
-
-        const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id, role: user.role });
-
-        return accessToken;
+        try {
+            if(!user.name || !user.email || !user.password) {
+                throw new Error("User name, email and password must be provided");
+            }
+    
+            const idGenerator = new IdGenerator();
+            const id = idGenerator.generate();
+    
+            const hashManager = new HashManager();
+            const hashPassword = await hashManager.hash(user.password);
+    
+            const userDatabase = new UserDatabase();
+            await userDatabase.createUser(id, user.email, user.name, hashPassword, user.role);
+    
+            const authenticator = new Authenticator();
+            const accessToken = authenticator.generateToken({ id, role: user.role });
+    
+            return accessToken;
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        }   
     }
 
     async getUserByEmail(user: LoginInputDTO) {

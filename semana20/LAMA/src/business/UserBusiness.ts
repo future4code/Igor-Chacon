@@ -31,6 +31,17 @@ export class UserBusiness {
         }   
     }
 
+    async getBandByNameOrId(name: any) {
+        const userDatabase = new UserDatabase();
+        const bandFromDB = await userDatabase.getBandByNameOrId(name);
+
+        if (!name) {
+            throw new Error("Invalid name.");
+        }
+
+        return ({bandFromDB});
+    }
+
     async getUserByEmail(user: LoginInputDTO) {
 
         const userDatabase = new UserDatabase();

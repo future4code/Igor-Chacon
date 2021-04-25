@@ -66,4 +66,16 @@ export class UserDatabase extends BaseDatabase {
     }
   }
 
+
+  public async getBandByNameOrId(name: string): Promise<void> {
+    try {
+      await this.getConnection()
+        .select(`*`)
+        .from(UserDatabase.TABLE_BAND)
+        .where(`${name}`)
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }
+
 }

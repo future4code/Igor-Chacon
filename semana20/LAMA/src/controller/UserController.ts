@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserInputDTO, LoginInputDTO, BandInputDTO} from "../model/User";
+import { UserInputDTO, LoginInputDTO, BandInputDTO, GetBandInputDTO} from "../model/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { BaseDatabase } from "../data/BaseDatabase";
 
@@ -26,6 +26,26 @@ export class UserController {
         await BaseDatabase.destroyConnection();
     }
 
+    async getBand(req: Request, res: Response) {
+        try {
+            const name: string = req.body.name;
+
+            if (!name) {
+                throw new Error("Invalid band name!");
+            };
+
+            const userBusiness = new UserBusiness();
+            const selectedBand = await userBusiness.getBandByNameOrId(name);
+
+            res.status(200).send({ selectedBand });
+            
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+        
+        await BaseDatabase.destroyConnection();
+    }
+
     async login(req: Request, res: Response) {
 
         try {
@@ -45,7 +65,7 @@ export class UserController {
         }
 
         await BaseDatabase.destroyConnection();
-        
+
     }
 
     async signUpBand(req: Request, res: Response) {

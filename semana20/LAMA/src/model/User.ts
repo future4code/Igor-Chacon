@@ -77,6 +77,10 @@ export interface LoginInputDTO{
     password: string;
 }
 
+export interface GetBandInputDTO{
+    name: any;
+}
+
 export enum UserRole{
     NORMAL = "NORMAL",
     ADMIN = "ADMIN"

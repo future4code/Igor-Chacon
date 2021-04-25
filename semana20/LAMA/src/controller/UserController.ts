@@ -45,6 +45,7 @@ export class UserController {
         }
 
         await BaseDatabase.destroyConnection();
+        
     }
 
     async signUpBand(req: Request, res: Response) {
@@ -62,7 +63,7 @@ export class UserController {
         } catch (error) {
             res.status(400).send({ error: error.message });
         }
-        
+
         await BaseDatabase.destroyConnection();
     }
 

@@ -8,6 +8,10 @@ export class UserBusiness {
 
     async createUser(user: UserInputDTO) {
 
+        if(!user.name || !user.email || !user.password) {
+            throw new Error("User name, email and password must be provided");
+        }
+
         const idGenerator = new IdGenerator();
         const id = idGenerator.generate();
 
